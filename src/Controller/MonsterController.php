@@ -10,7 +10,7 @@ class MonsterController extends Controller
 
     public function indexAction(Request $request, Response $response): Response
     {
-        $response->getBody()->write('Hello Monsterdb');
+        $response->getBody()->write($this->view('VueEntrypoint.html'));
 
         return $response;
     }
