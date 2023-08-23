@@ -1,9 +1,0 @@
-.idea
-.DS_Store
-/vendor/
-/node_modules/
-/public/dist/*.js
-/public/dist/*.css
-*.sqlite
-*.swp
-.env
