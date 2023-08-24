@@ -9,9 +9,9 @@ A web app designed to serve information about the popular video game, Pokemon.
 
 ## Development
 
-Just run `docker compose up` and it will stand up nginx and php-fpm.
-For the backend, you'll need a `composer install`.
-For the frontend, you'll need `npm ci`. Then run `npx vite build -w`
+- Clone the repo
+- Run `make build`
+- Run `docker compose up`
 
 ## Assets
 The data provided in the `sql` and `public/assets` directories are sourced from [Bulbapedia](https://bulbapedia.bulbagarden.net).
