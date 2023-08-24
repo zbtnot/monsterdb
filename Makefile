@@ -1,3 +1,5 @@
+build: db composer npm vite
+
 db:
 	rm -f db.sqlite
 	touch db.sqlite
@@ -13,10 +15,11 @@ npm:
 vite:
 	npx vite build
 
+watch:
+	npx vite build -w
+
 composer:
 	composer install
-
-build: db composer npm vite
 
 unit:
 	./vendor/bin/phpunit test
@@ -26,4 +29,4 @@ clean:
 	rm -r vendor
 	rm -r node_modules
 
-.PHONY: unit composer npm  vite db build clean
+.PHONY: unit composer npm  vite db build clean watch

@@ -1,8 +1,11 @@
 <template>
-    <Search @search="(query) => this.search = query" />
+    <Search @search="(query) => (search = query)" />
+    <template v-if="error.length !== 0">
+        <Banner :message="error" />
+    </template>
     <div class="px-5 mt-4">
         <template v-if="!loaded">Loading..</template>
-        <template v-else-if="filteredMonsters.length === 0">
+        <template v-else-if="filteredMonsters.length === 0 && error.length === 0">
             No monsters found.
         </template>
         <div
@@ -24,14 +27,16 @@
 import axiosClient from '../../axios.js';
 import Tile from '../Tile.vue';
 import Search from '../Search.vue';
+import Banner from '../Banner.vue';
 
 export default {
-    components: { Search, Tile },
+    components: { Banner, Search, Tile },
     async created() {
         try {
-            this.monsters = (await axiosClient.get('/monster')).data;
+            await this.fetchMonsters();
         } catch (e) {
-            // TODO have an error banner or something
+            this.error =
+                'There was a problem loading the page. Please try again.';
         } finally {
             this.loaded = true;
         }
@@ -41,6 +46,7 @@ export default {
             loaded: false,
             monsters: [],
             search: '',
+            error: '',
         };
     },
     computed: {
@@ -49,9 +55,14 @@ export default {
                 return this.monsters;
             }
 
-            return this.monsters.filter(
-                (monster) => monster.name.toLowerCase().includes(this.search.toLowerCase())
-            )
+            return this.monsters.filter((monster) =>
+                monster.name.toLowerCase().includes(this.search.toLowerCase())
+            );
+        },
+    },
+    methods: {
+        async fetchMonsters() {
+            this.monsters = (await axiosClient.get('/monster')).data;
         },
     },
 };
