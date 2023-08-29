@@ -1,5 +1,6 @@
 <template>
-    <div
+    <router-link
+        :to="`/monster/${dexId}`"
         class="mb-2 ml-2 mr-2 mt-2 rounded border-2 border-slate-400 bg-slate-600 hover:cursor-pointer hover:bg-slate-700"
     >
         <img
@@ -10,7 +11,7 @@
         <div class="bg-slate-800 text-center">
             {{ name }}
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>

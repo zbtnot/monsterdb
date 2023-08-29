@@ -6,3 +6,5 @@
 *.sqlite
 *.swp
 .env
+.phpunit.cache
+/test-coverage/
