@@ -24,11 +24,12 @@ composer:
 	composer install
 
 unit:
-	./vendor/bin/phpunit test
+	XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-coverage
 
 clean:
 	rm db.sqlite
-	rm -r vendor
-	rm -r node_modules
+	rm -rf vendor
+	rm -rf node_modules
+	rm -rf test-coverage
 
 .PHONY: unit composer npm vite db build clean watch

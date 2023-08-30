@@ -4,9 +4,21 @@ namespace zbtnot\MonsterDb\Model;
 
 class Monster implements \JsonSerializable
 {
+    private int $id;
     private int $dexId;
     private string $name;
-    private string $illustrationPath;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getDexId(): int
     {
@@ -32,24 +44,11 @@ class Monster implements \JsonSerializable
         return $this;
     }
 
-    public function getIllustrationPath(): string
-    {
-        return $this->illustrationPath;
-    }
-
-    public function setIllustrationPath(string $path): self
-    {
-        $this->illustrationPath = $path;
-
-        return $this;
-    }
-
     public function jsonSerialize(): array
     {
         return [
             'dexId' => $this->getDexId(),
             'name' => $this->getName(),
-            'illustrationPath' => $this->getIllustrationPath(),
         ];
     }
 }
