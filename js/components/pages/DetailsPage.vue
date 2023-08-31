@@ -3,11 +3,12 @@
     <template v-else>
         <Banner v-if="error.length !== 0" :message="error" />
         <div v-else class="flex flex-wrap mt-4 px-5">
-            <div class="w-full md:w-1/3 mb-5">
-                <StatsCard :monster="monster" />
+            <div class="w-full md:w-1/3">
+                <StatsCard :monster="monster" class="mb-5" />
+                <EvolutionCard :evolutions="monster.evolutions" :monster="monster" class="mb-5" />
             </div>
             <div class="w-full md:w-2/3">
-                <MoveList :moves="monster.moves" />
+                <MoveListCard :moves="monster.moves" class="mb-5" />
             </div>
         </div>
     </template>
@@ -17,10 +18,11 @@
 import axiosClient from '../../axios.js';
 import Banner from '../Banner.vue';
 import StatsCard from '../monster/StatsCard.vue';
-import MoveList from '../monster/MoveList.vue';
+import MoveListCard from '../monster/MoveListCard.vue';
+import EvolutionCard from "../monster/EvolutionCard.vue";
 
 export default {
-    components: { MoveList, StatsCard, Banner },
+    components: { EvolutionCard, MoveListCard, StatsCard, Banner },
     async created() {
         try {
             this.monster = (
@@ -37,7 +39,11 @@ export default {
         return {
             loaded: false,
             error: '',
-            monster: null,
+            monster: {
+                dexId: 0,
+                moves: [],
+                evolutions: [],
+            },
         };
     },
 };

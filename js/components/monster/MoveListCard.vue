@@ -44,7 +44,7 @@
 import TypeBadge from './TypeBadge.vue';
 
 export default {
-    name: 'MoveList',
+    name: 'MoveListCard',
     components: { TypeBadge },
     props: ['moves'],
 };

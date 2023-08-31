@@ -18,7 +18,7 @@ vite:
 	npx vite build
 
 watch:
-	npx vite build -w
+	NODE_ENV=development npx vite build -w
 
 composer:
 	composer install
