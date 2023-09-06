@@ -4,6 +4,7 @@ namespace zbtnot\MonsterDb\Model;
 
 /**
  * Represents an object containing a monster and associated details data.
+
  */
 class DetailedMonster implements \JsonSerializable
 {
@@ -12,6 +13,8 @@ class DetailedMonster implements \JsonSerializable
     private string $illustrationPath;
 
     private string $spritePath;
+
+    private string $cryPath;
 
     /** @var Type[] */
     private array $types;
@@ -69,6 +72,18 @@ class DetailedMonster implements \JsonSerializable
         return $this;
     }
 
+    public function getCryPath(): string
+    {
+        return $this->cryPath;
+    }
+
+    public function setCryPath(string $cry): self
+    {
+        $this->cryPath = $cry;
+
+        return $this;
+    }
+
     /** @return Move[] */
     public function getMoves(): array
     {
@@ -102,6 +117,7 @@ class DetailedMonster implements \JsonSerializable
             'types' => $this->getTypeNames(),
             'illustrationPath' => $this->getIllustrationPath(),
             'spritePath' => $this->getSpritePath(),
+            'cryPath' => $this->getCryPath(),
             'moves' => $this->getMoves(),
             'evolutions' => $this->getEvolutions(),
         ];

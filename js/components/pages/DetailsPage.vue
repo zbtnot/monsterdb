@@ -11,6 +11,7 @@
                     class="mb-5"
                 />
                 <SpriteCard :sprite-path="monster.spritePath" class="mb-5" />
+                <CryCard :cry-path="monster.cryPath" class="mb-5" />
             </div>
             <div class="w-full md:w-2/3">
                 <MoveListCard :moves="monster.moves" class="mb-5" />
@@ -26,9 +27,17 @@ import StatsCard from '../monster/StatsCard.vue';
 import MoveListCard from '../monster/MoveListCard.vue';
 import EvolutionCard from '../monster/EvolutionCard.vue';
 import SpriteCard from '../monster/SpriteCard.vue';
+import CryCard from '../monster/CryCard.vue';
 
 export default {
-    components: { SpriteCard, EvolutionCard, MoveListCard, StatsCard, Banner },
+    components: {
+        CryCard,
+        SpriteCard,
+        EvolutionCard,
+        MoveListCard,
+        StatsCard,
+        Banner,
+    },
     async created() {
         try {
             this.monster = (
@@ -50,6 +59,7 @@ export default {
                 moves: [],
                 evolutions: [],
                 spritePath: '',
+                cryPath: '',
             },
         };
     },
