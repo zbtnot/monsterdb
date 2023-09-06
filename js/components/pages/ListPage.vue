@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         async fetchMonsters() {
-            this.monsters = (await axiosClient.get('/monster')).data;
+            this.monsters = Object.values((await axiosClient.get('/monster')).data);
         },
     },
 };
