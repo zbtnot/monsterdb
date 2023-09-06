@@ -2,11 +2,16 @@
 
 namespace zbtnot\MonsterDb\Model;
 
+/**
+ * Represents an object containing a monster and associated details data.
+ */
 class DetailedMonster implements \JsonSerializable
 {
     private Monster $monster;
 
     private string $illustrationPath;
+
+    private string $spritePath;
 
     /** @var Type[] */
     private array $types;
@@ -14,12 +19,18 @@ class DetailedMonster implements \JsonSerializable
     /** @var Move[] */
     private array $moves;
 
-    /** @var array<int, IllustratedMonster[]> */
+    /** @var array<int, GraphicMonster[]> */
     private $evolutions;
 
     public function __construct(Monster $monster)
     {
         $this->monster = $monster;
+    }
+
+    /** @return string[] */
+    public function getTypeNames(): array
+    {
+        return array_map(fn(Type $type) => $type->getName(), $this->types);
     }
 
     public function getTypes(): array
@@ -46,6 +57,18 @@ class DetailedMonster implements \JsonSerializable
         return $this;
     }
 
+    public function getSpritePath(): string
+    {
+        return $this->spritePath;
+    }
+
+    public function setSpritePath(string $sprite): self
+    {
+        $this->spritePath = $sprite;
+
+        return $this;
+    }
+
     /** @return Move[] */
     public function getMoves(): array
     {
@@ -65,7 +88,7 @@ class DetailedMonster implements \JsonSerializable
         return $this->evolutions;
     }
 
-    /** @var array<int, IllustratedMonster[]> $evolutions */
+    /** @var array<int, GraphicMonster[]> $evolutions */
     public function setEvolutions($evolutions): self
     {
         $this->evolutions = $evolutions;
@@ -76,10 +99,11 @@ class DetailedMonster implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $fields = [
-            'types' => array_map(fn(Type $type) => $type->getName(), $this->types),
-            'illustrationPath' => $this->illustrationPath,
-            'moves' => $this->moves,
-            'evolutions' => $this->evolutions,
+            'types' => $this->getTypeNames(),
+            'illustrationPath' => $this->getIllustrationPath(),
+            'spritePath' => $this->getSpritePath(),
+            'moves' => $this->getMoves(),
+            'evolutions' => $this->getEvolutions(),
         ];
 
         return array_merge($fields, $this->monster->jsonSerialize());

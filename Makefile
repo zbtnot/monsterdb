@@ -10,6 +10,7 @@ db:
 	sqlite3 db.sqlite < sql/evolution.sql
 	sqlite3 db.sqlite < sql/move.sql
 	sqlite3 db.sqlite < sql/monster_move.sql
+	sqlite3 db.sqlite < sql/sprite.sql
 
 npm:
 	npm ci

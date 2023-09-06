@@ -8,7 +8,7 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use zbtnot\MonsterDb\Http\JsonResponse;
 use zbtnot\MonsterDb\Service\DetailedMonsterService;
-use zbtnot\MonsterDb\Service\IllustrationService;
+use zbtnot\MonsterDb\Service\GraphicService;
 use zbtnot\MonsterDb\Service\MonsterService;
 
 class MonsterController extends Controller
@@ -17,7 +17,7 @@ class MonsterController extends Controller
     private MonsterService $monsterService;
 
     #[Inject]
-    private IllustrationService $illustrationService;
+    private GraphicService $illustrationService;
 
     #[Inject]
     private DetailedMonsterService $detailedMonsterService;
@@ -34,7 +34,7 @@ class MonsterController extends Controller
         $offset = $request->getQueryParams()['offset'] ?? 0;
         $count = $request->getQueryParams()['count'] ?? 151;
         $monsters = $this->monsterService->fetchMonsters($offset, $count);
-        $illustratedMonsters = $this->illustrationService->fetchIllustratedMonstersFromMonsters($monsters);
+        $illustratedMonsters = $this->illustrationService->fetchGraphicMonstersFromMonsters($monsters);
 
         return new JsonResponse($illustratedMonsters);
     }

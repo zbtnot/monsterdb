@@ -2,8 +2,9 @@
 
 namespace zbtnot\MonsterDb\Repository;
 
-class IllustrationRepository extends Repository
+class GraphicRepository extends Repository
 {
+    /** @return array<int, string> */
     public function fetchIllustrationsByMonsterIds(array $monsterIds): array
     {
         $sql = <<<SQL
@@ -30,6 +31,40 @@ class IllustrationRepository extends Repository
                 path
             FROM illustration
             WHERE illustration.monster_id = :id
+        SQL;
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([':id' => $monsterId]);
+
+        return $statement->fetchColumn();
+    }
+
+    public function fetchSpritesByMonsterIds(array $monsterIds): array
+    {
+        $sql = <<<SQL
+            SELECT
+                path
+            FROM sprite
+            WHERE sprite.monster_id = :id
+        SQL;
+
+        $sprites = [];
+        $statement = $this->pdo->prepare($sql);
+        foreach ($monsterIds as $monsterId) {
+            $statement->execute([':id' => $monsterId]);
+            $sprites[$monsterId] = $statement->fetchColumn();
+        }
+
+        return $sprites;
+    }
+
+    public function fetchSpriteByMonsterId(int $monsterId): string
+    {
+        $sql = <<<SQL
+            SELECT
+                path
+            FROM sprite
+            WHERE sprite.monster_id = :id
         SQL;
 
         $statement = $this->pdo->prepare($sql);
