@@ -7,6 +7,7 @@ use zbtnot\MonsterDb\Model\GraphicMonster;
 use zbtnot\MonsterDb\Model\Monster;
 use zbtnot\MonsterDb\Model\Move;
 use zbtnot\MonsterDb\Model\Type;
+use zbtnot\MonsterDb\Repository\CryRepository;
 use zbtnot\MonsterDb\Repository\GraphicRepository;
 use zbtnot\MonsterDb\Repository\MonsterRepository;
 use zbtnot\MonsterDb\Repository\MoveRepository;
@@ -25,6 +26,7 @@ class DetailedMonsterServiceTest extends TestCase
     private MockObject $graphicService;
     private MockObject $moveRepository;
     private MockObject $monsterRepository;
+    private MockObject $cryRepository;
 
     private DetailedMonsterService $detailedMonsterService;
 
@@ -35,6 +37,7 @@ class DetailedMonsterServiceTest extends TestCase
         $this->graphicService = $this->createMock(GraphicService::class);
         $this->moveRepository = $this->createMock(MoveRepository::class);
         $this->monsterRepository = $this->createMock(MonsterRepository::class);
+        $this->cryRepository = $this->createMock(CryRepository::class);
 
         $this->detailedMonsterService = new DetailedMonsterService(
             $this->typeRepository,
@@ -42,6 +45,7 @@ class DetailedMonsterServiceTest extends TestCase
             $this->graphicService,
             $this->moveRepository,
             $this->monsterRepository,
+            $this->cryRepository,
         );
     }
 
@@ -57,13 +61,15 @@ class DetailedMonsterServiceTest extends TestCase
         $moves = [new Move()];
         $evolutions = [$monster->getId() => [new Monster()]];
         $illustratedEvolutions = [new GraphicMonster($evolutions[$monster->getId()][0])];
+        $cry = 'bubl.flac';
 
         $detailedMonster = (new DetailedMonster($monster))
             ->setTypes($types)
             ->setMoves($moves)
             ->setEvolutions([$monster->getId() => $illustratedEvolutions])
             ->setIllustrationPath($illustration)
-            ->setSpritePath($sprite);
+            ->setSpritePath($sprite)
+            ->setCryPath($cry);
 
         $this->typeRepository
             ->expects($this->once())
@@ -100,6 +106,12 @@ class DetailedMonsterServiceTest extends TestCase
             ->method('fetchMonstersFromEvolutionTreeByMonsterId')
             ->with($monster->getId())
             ->willReturn($evolutions);
+
+        $this->cryRepository
+            ->expects($this->once())
+            ->method('fetchCryByMonsterId')
+            ->with($monster->getId())
+            ->willReturn($cry);
 
         $result = $this->detailedMonsterService->fetchDetailedMonsterFromMonster($monster);
         $this->assertEquals($detailedMonster, $result);

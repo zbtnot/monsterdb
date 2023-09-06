@@ -4,6 +4,7 @@ namespace zbtnot\MonsterDb\Service;
 
 use zbtnot\MonsterDb\Model\DetailedMonster;
 use zbtnot\MonsterDb\Model\Monster;
+use zbtnot\MonsterDb\Repository\CryRepository;
 use zbtnot\MonsterDb\Repository\GraphicRepository;
 use zbtnot\MonsterDb\Repository\MonsterRepository;
 use zbtnot\MonsterDb\Repository\MoveRepository;
@@ -17,6 +18,7 @@ class DetailedMonsterService
         private readonly GraphicService $illustrationService,
         private readonly MoveRepository $moveRepository,
         private readonly MonsterRepository $monsterRepository,
+        private readonly CryRepository $cryRepository,
     ) {
     }
 
@@ -25,6 +27,7 @@ class DetailedMonsterService
         $types = $this->typeRepository->fetchTypesByMonsterId($monster->getId());
         $illustration = $this->illustrationRepository->fetchIllustrationByMonsterId($monster->getId());
         $sprite = $this->illustrationRepository->fetchSpriteByMonsterId($monster->getId());
+        $cry = $this->cryRepository->fetchCryByMonsterId($monster->getId());
         $moves = $this->moveRepository->getMovesByMonsterId($monster->getId());
 
         $evolutions = $this->monsterRepository->fetchMonstersFromEvolutionTreeByMonsterId($monster->getId());
@@ -36,6 +39,7 @@ class DetailedMonsterService
             ->setTypes($types)
             ->setIllustrationPath($illustration)
             ->setSpritePath($sprite)
+            ->setCryPath($cry)
             ->setMoves($moves)
             ->setEvolutions($evolutions);
     }

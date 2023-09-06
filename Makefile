@@ -11,6 +11,7 @@ db:
 	sqlite3 db.sqlite < sql/move.sql
 	sqlite3 db.sqlite < sql/monster_move.sql
 	sqlite3 db.sqlite < sql/sprite.sql
+	sqlite3 db.sqlite < sql/cry.sql
 
 npm:
 	npm ci

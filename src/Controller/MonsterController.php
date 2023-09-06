@@ -4,6 +4,7 @@ namespace zbtnot\MonsterDb\Controller;
 
 use DI\Attribute\Inject;
 use Fig\Http\Message\StatusCodeInterface;
+use PHPUnit\Util\Json;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use zbtnot\MonsterDb\Http\JsonResponse;
@@ -47,7 +48,7 @@ class MonsterController extends Controller
             $detailedMonster = $this->detailedMonsterService->fetchDetailedMonsterFromMonster($monster);
         } catch (\Exception $e) {
             $status = StatusCodeInterface::STATUS_BAD_REQUEST;
-            // logging goes here
+            error_log($e->getMessage());
         } finally {
             return new JsonResponse(
                 $detailedMonster ?? '',
