@@ -31,7 +31,7 @@
                             parseInt(parentId) === parseInt(monster.dexId) &&
                             !hasMultipleEvolutionaryPaths
                         "
-                        class="inline-block w-20"
+                        class="inline-block w-24"
                         :dex-id="monster.dexId"
                         :illustration-path="monster.illustrationPath"
                         :name="monster.name"
@@ -45,7 +45,7 @@
                 </div>
                 <div class="w-auto flex justify-center">
                     <Tile
-                        class="inline-block w-20"
+                        class="inline-block w-24"
                         :dex-id="evolution.dexId"
                         :illustration-path="evolution.illustrationPath"
                         :name="evolution.name"
@@ -62,12 +62,12 @@ import Tile from '../Tile.vue';
 import { computed } from 'vue';
 
 const props = defineProps({
-    evolutions: Array,
+    evolutions: Object,
     monster: Object,
 });
 
 const hasMultipleEvolutionaryPaths = computed(() => {
-    const evolutions = props.evolutions[props.monster.dexId];
+    const evolutions = Object.values(props.evolutions[props.monster.dexId] ?? []);
 
     return evolutions !== undefined && evolutions.length > 1;
 });
