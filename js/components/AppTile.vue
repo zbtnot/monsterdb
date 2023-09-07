@@ -2,6 +2,7 @@
     <router-link
         :to="`/monster/${dexId}`"
         class="m-2 rounded border-2 border-slate-400 bg-slate-600 hover:cursor-pointer hover:bg-slate-700"
+        :class="{ 'animate-pulse': !loaded }"
     >
         <div :class="{ hidden: !loaded }">
             <img
