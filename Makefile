@@ -1,4 +1,7 @@
-build: db composer npm vite
+build: db composer npm vite env
+
+env:
+	-test ! -f .env && cp .env.dist .env
 
 db:
 	rm -f db.sqlite
@@ -24,6 +27,9 @@ watch:
 
 composer:
 	composer install
+
+logger:
+	tail -f -n 0 ./var/log/*.log
 
 unit:
 	XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-coverage

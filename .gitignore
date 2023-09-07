@@ -8,3 +8,4 @@
 .env
 .phpunit.cache
 /test-coverage/
+*.log
