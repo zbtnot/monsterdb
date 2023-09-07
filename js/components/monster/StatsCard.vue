@@ -22,6 +22,7 @@
                                 v-for="type in monster.types"
                                 :type="type"
                                 class="mr-2"
+                                :key="type"
                             />
                         </td>
                     </tr>

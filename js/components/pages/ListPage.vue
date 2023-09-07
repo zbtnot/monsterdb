@@ -29,24 +29,24 @@
 </template>
 
 <script setup>
-import axiosClient from '../../axios.js';
-import Tile from '../Tile.vue';
-import Search from '../Search.vue';
-import Banner from '../Banner.vue';
 import { computed, ref } from 'vue';
+import axiosClient from '../../axios';
+import Tile from '../AppTile.vue';
+import Search from '../AppSearch.vue';
+import Banner from '../AppBanner.vue';
 
 let loaded;
-let monsters = ref([]);
-let search = ref('');
-let error = ref('');
+const monsters = ref([]);
+const search = ref('');
+const error = ref('');
 
 const filteredMonsters = computed(() => {
     if (search.value.length === 0) {
         return monsters.value;
     }
 
-    return monsters.value.filter((monster) =>
-        monster.name.toLowerCase().includes(search.value.toLowerCase())
+    return monsters.value.filter(
+        (monster) => monster.name.toLowerCase().includes(search.value.toLowerCase()),
     );
 });
 

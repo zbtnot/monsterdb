@@ -23,8 +23,9 @@
                 'flex flex-wrap justify-center': hasMultipleEvolutionaryPaths,
             }"
             v-for="(evolutionList, parentId) in evolutions"
+            :key="parentId"
         >
-            <div class="grid grid-cols-1" v-for="evolution in evolutionList">
+            <div class="grid grid-cols-1" v-for="(evolution, id) in evolutionList" :key="id">
                 <div class="w-auto flex justify-center">
                     <Tile
                         v-if="
@@ -57,9 +58,9 @@
 </template>
 
 <script setup>
-import { ChevronDownIcon } from '@heroicons/vue/24/solid';
-import Tile from '../Tile.vue';
 import { computed } from 'vue';
+import { ChevronDownIcon } from '@heroicons/vue/24/solid';
+import Tile from '../AppTile.vue';
 
 const props = defineProps({
     evolutions: Object,

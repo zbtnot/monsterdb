@@ -3,14 +3,14 @@
         <div class="text-2xl">Cry</div>
         <div class="w-auto flex justify-center">
             <audio controls>
-                <source :src="cryPath" type="audio/flac">
+                <source :src="cryPath" type="audio/flac" />
             </audio>
         </div>
     </div>
 </template>
 
 <script setup>
-    const props = defineProps({
-        'cryPath': String,
-    });
+defineProps({
+    cryPath: String,
+});
 </script>
