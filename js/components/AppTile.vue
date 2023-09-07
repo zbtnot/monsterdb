@@ -20,13 +20,13 @@
 <script setup>
 import { ref } from 'vue';
 
-let props = defineProps({
+defineProps({
     name: String,
     dexId: Number,
     illustrationPath: String,
 });
 
-let loaded = ref(false);
+const loaded = ref(false);
 const imgLoaded = () => {
     loaded.value = true;
 };

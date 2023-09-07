@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y-2 divide-dotted">
-                    <tr class="hover:bg-slate-700" v-for="move in moves">
+                    <tr class="hover:bg-slate-700" v-for="(move, id) in moves" :key="id">
                         <td class="pr-6 py-2">{{ move.name }}</td>
                         <td class="pr-6 py-2">
                             <TypeBadge :type="move.type" />
