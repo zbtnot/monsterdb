@@ -2,6 +2,8 @@
 
 A web app designed to serve information about the popular video game, Pokemon.
 
+[Production Demo](https://pkmn.gioarc.me)
+
 ## Architecture
 -   The frontend uses Vue and Tailwind
 -   The backend uses Slim 4 with PHP-DI
