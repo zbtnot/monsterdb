@@ -53,6 +53,9 @@ case 'Ice':
 case 'Dragon':
     typeColor = 'bg-indigo-900';
     break;
+case 'Ghost':
+    typeColor = 'bg-purple-900';
+    break;
 default:
     typeColor = 'bg-white';
 }

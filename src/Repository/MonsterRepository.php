@@ -12,10 +12,13 @@ class MonsterRepository extends Repository
     {
         $sql = <<<SQL
             SELECT
-                id,
+                monster.id,
                 dex_id AS dexId,
-                name
+                name,
+                weight,
+                height
             FROM monster
+            INNER JOIN stat ON monster.id = stat.monster_id
             LIMIT :offset, :count
         SQL;
 
@@ -29,10 +32,13 @@ class MonsterRepository extends Repository
     {
         $sql = <<<SQL
             SELECT
-                id,
+                monster.id,
                 dex_id AS dexId,
-                name
+                name,
+                height,
+                weight
             FROM monster
+            INNER JOIN stat ON monster.id = stat.monster_id
             WHERE dex_id = :id
         SQL;
         $statement = $this->pdo->prepare($sql);
@@ -57,9 +63,12 @@ class MonsterRepository extends Repository
                 evolution_tree.to_monster_id AS id,
                 monster.dex_id AS dexId,
                 monster.name,
+                stat.height,
+                stat.weight,
                 evolution_tree.from_monster_id
             FROM evolution_tree
             INNER JOIN monster ON evolution_tree.to_monster_id = monster.id
+            INNER JOIN stat ON monster.id = stat.monster_id
             ORDER BY from_monster_id;
         SQL;
         $statement = $this->pdo->prepare($sql);
@@ -73,7 +82,9 @@ class MonsterRepository extends Repository
             $monsters[$monster['from_monster_id']][] = (new Monster())
                 ->setId($monster['id'])
                 ->setName($monster['name'])
-                ->setDexId($monster['dexId']);
+                ->setDexId($monster['dexId'])
+                ->setHeight($monster['height'])
+                ->setWeight($monster['weight']);
         }
 
         return $monsters;

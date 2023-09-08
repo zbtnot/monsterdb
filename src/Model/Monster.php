@@ -7,6 +7,8 @@ class Monster implements \JsonSerializable
     private int $id;
     private int $dexId;
     private string $name;
+    private float $height;
+    private float $weight;
 
     public function getId(): int
     {
@@ -44,11 +46,37 @@ class Monster implements \JsonSerializable
         return $this;
     }
 
+    public function getHeight(): float
+    {
+        return $this->height;
+    }
+
+    public function setHeight(float $height): self
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    public function getWeight(): float
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(float $weight): self
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
     public function jsonSerialize(): array
     {
         return [
             'dexId' => $this->getDexId(),
             'name' => $this->getName(),
+            'weight' => $this->getWeight(),
+            'height' => $this->getHeight(),
         ];
     }
 }
