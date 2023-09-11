@@ -1,5 +1,7 @@
 <?php
 
+namespace zbtnot\MonsterDb\Tests\Service;
+
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use zbtnot\MonsterDb\Model\Monster;

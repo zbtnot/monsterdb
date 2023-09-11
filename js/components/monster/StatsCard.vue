@@ -48,12 +48,10 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import TypeBadge from './TypeBadge.vue';
 
-export default {
-    name: 'StatsCard',
-    components: { TypeBadge },
-    props: ['monster'],
-};
+defineProps({
+    monster: Object,
+});
 </script>

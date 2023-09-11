@@ -25,7 +25,11 @@
             v-for="(evolutionList, parentId) in evolutions"
             :key="parentId"
         >
-            <div class="grid grid-cols-1" v-for="(evolution, id) in evolutionList" :key="id">
+            <div
+                class="grid grid-cols-1"
+                v-for="(evolution, id) in evolutionList"
+                :key="id"
+            >
                 <div class="w-auto flex justify-center">
                     <Tile
                         v-if="
@@ -45,12 +49,19 @@
                     <ChevronDownIcon class="h-6 w-6" />
                 </div>
                 <div class="w-auto flex justify-center">
-                    <Tile
-                        class="inline-block w-24"
-                        :dex-id="evolution.dexId"
-                        :illustration-path="evolution.illustrationPath"
-                        :name="evolution.name"
-                    />
+                    <div class="mx-2 w-28 mb-2">
+                        <div class="bg-slate-400 w-auto px-1 mb-2 text-center">
+                            {{ resolveRequisiteLabel(evolution.requisite) }}
+                        </div>
+                        <Tile
+                            class="block w-auto m-0"
+                            :dex-id="evolution.monster.dexId"
+                            :illustration-path="
+                                evolution.monster.illustrationPath
+                            "
+                            :name="evolution.monster.name"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,8 +79,20 @@ const props = defineProps({
 });
 
 const hasMultipleEvolutionaryPaths = computed(() => {
-    const evolutions = Object.values(props.evolutions[props.monster.dexId] ?? []);
+    const evolutions = Object.values(
+        props.evolutions[props.monster.dexId] ?? [],
+    );
 
     return evolutions !== undefined && evolutions.length > 1;
 });
+
+const resolveRequisiteLabel = (requisite) => {
+    switch (requisite.type) {
+    case 'Level Up': return `${requisite.type} (${requisite.contents})`;
+    case 'Item':
+        return requisite.contents.name;
+    default:
+        return requisite.type;
+    }
+};
 </script>

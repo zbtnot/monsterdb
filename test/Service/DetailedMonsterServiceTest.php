@@ -1,13 +1,19 @@
 <?php
 
+namespace zbtnot\MonsterDb\Tests\Service;
+
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use zbtnot\MonsterDb\Model\DetailedMonster;
+use zbtnot\MonsterDb\Model\EvolutionMonster;
 use zbtnot\MonsterDb\Model\GraphicMonster;
 use zbtnot\MonsterDb\Model\Monster;
 use zbtnot\MonsterDb\Model\Move;
+use zbtnot\MonsterDb\Model\Requisite;
+use zbtnot\MonsterDb\Model\RequisiteType;
 use zbtnot\MonsterDb\Model\Type;
 use zbtnot\MonsterDb\Repository\CryRepository;
+use zbtnot\MonsterDb\Repository\EvolutionRepository;
 use zbtnot\MonsterDb\Repository\GraphicRepository;
 use zbtnot\MonsterDb\Repository\MonsterRepository;
 use zbtnot\MonsterDb\Repository\MoveRepository;
@@ -27,6 +33,7 @@ class DetailedMonsterServiceTest extends TestCase
     private MockObject $moveRepository;
     private MockObject $monsterRepository;
     private MockObject $cryRepository;
+    private MockObject $evolutionRepository;
 
     private DetailedMonsterService $detailedMonsterService;
 
@@ -38,6 +45,7 @@ class DetailedMonsterServiceTest extends TestCase
         $this->moveRepository = $this->createMock(MoveRepository::class);
         $this->monsterRepository = $this->createMock(MonsterRepository::class);
         $this->cryRepository = $this->createMock(CryRepository::class);
+        $this->evolutionRepository = $this->createMock(EvolutionRepository::class);
 
         $this->detailedMonsterService = new DetailedMonsterService(
             $this->typeRepository,
@@ -46,6 +54,7 @@ class DetailedMonsterServiceTest extends TestCase
             $this->moveRepository,
             $this->monsterRepository,
             $this->cryRepository,
+            $this->evolutionRepository,
         );
     }
 
@@ -59,14 +68,19 @@ class DetailedMonsterServiceTest extends TestCase
         $sprite = 'bulb_sprite.png';
         $types = [new Type()];
         $moves = [new Move()];
-        $evolutions = [$monster->getId() => [new Monster()]];
+        $evolutions = [$monster->getId() => [(new Monster())->setEvolutionHowId(0)]];
         $illustratedEvolutions = [new GraphicMonster($evolutions[$monster->getId()][0])];
         $cry = 'bubl.flac';
+
+        $evolutionRequisite = (new Requisite())->setType(RequisiteType::LEVEL_UP)->setContents(0);
+        $evolutionMonsters = array_map(function (GraphicMonster $graphicMonster) use ($evolutionRequisite) {
+            return (new EvolutionMonster())->setMonster($graphicMonster)->setRequisite($evolutionRequisite);
+        }, $illustratedEvolutions);
 
         $detailedMonster = (new DetailedMonster($monster))
             ->setTypes($types)
             ->setMoves($moves)
-            ->setEvolutions([$monster->getId() => $illustratedEvolutions])
+            ->setEvolutions([$monster->getId() => $evolutionMonsters])
             ->setIllustrationPath($illustration)
             ->setSpritePath($sprite)
             ->setCryPath($cry);
@@ -112,6 +126,12 @@ class DetailedMonsterServiceTest extends TestCase
             ->method('fetchCryByMonsterId')
             ->with($monster->getId())
             ->willReturn($cry);
+
+        $this->evolutionRepository
+            ->expects($this->once())
+            ->method('fetchRequisiteByEvolutionId')
+            ->with($monster->getEvolutionHowId())
+            ->willReturn($evolutionRequisite);
 
         $result = $this->detailedMonsterService->fetchDetailedMonsterFromMonster($monster);
         $this->assertEquals($detailedMonster, $result);

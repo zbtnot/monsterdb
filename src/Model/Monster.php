@@ -9,6 +9,7 @@ class Monster implements \JsonSerializable
     private string $name;
     private float $height;
     private float $weight;
+    private ?int $evolutionHowId = null;
 
     public function getId(): int
     {
@@ -66,6 +67,18 @@ class Monster implements \JsonSerializable
     public function setWeight(float $weight): self
     {
         $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getEvolutionHowId(): ?int
+    {
+        return $this->evolutionHowId;
+    }
+
+    public function setEvolutionHowId(int $evolution_how_id): self
+    {
+        $this->evolutionHowId = $evolution_how_id;
 
         return $this;
     }
