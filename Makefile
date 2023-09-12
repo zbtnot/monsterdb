@@ -10,6 +10,7 @@ db:
 	sqlite3 db.sqlite < sql/type.sql
 	sqlite3 db.sqlite < sql/monster_type.sql
 	sqlite3 db.sqlite < sql/illustration.sql
+	sqlite3 db.sqlite < sql/item.sql
 	sqlite3 db.sqlite < sql/evolution.sql
 	sqlite3 db.sqlite < sql/move.sql
 	sqlite3 db.sqlite < sql/monster_move.sql
