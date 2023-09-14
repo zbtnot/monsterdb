@@ -44,7 +44,8 @@ export default {
                 await axiosClient.get(`/monster/${this.$route.params.id}`)
             ).data;
         } catch (e) {
-            this.error = 'There was a problem loading the page. Please try again.';
+            this.error =
+                'There was a problem loading the page. Please try again.';
         } finally {
             this.loaded = true;
         }
