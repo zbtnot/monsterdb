@@ -26,7 +26,9 @@
                                         {{ column.name }}
                                     </template>
                                 </span>
-                                <span class="md:flex md:w-full md:justify-end md:pr-2">
+                                <span
+                                    class="md:flex md:w-full md:justify-end md:pr-2"
+                                >
                                     <ChevronUpDownIcon
                                         v-if="sortedBy !== column.sort"
                                         class="h-4 w-4 mt-1.5 inline-block"
@@ -50,7 +52,7 @@
                 <tbody class="divide-y-2 divide-dotted">
                     <tr
                         class="hover:bg-slate-700"
-                        v-for="(move, id) in sortedMovesList"
+                        v-for="(move, id) in movesList"
                         :key="move.name + id"
                     >
                         <td class="pr-6 py-2">{{ move.name }}</td>
@@ -77,7 +79,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {
     ChevronUpDownIcon,
     ChevronUpIcon,
@@ -89,6 +91,14 @@ const props = defineProps({
     moves: Array,
 });
 
+const movesList = ref([]);
+const sortedBy = ref(null);
+const sortAsc = ref(false);
+
+onMounted(() => {
+    movesList.value = [...props.moves];
+});
+
 const columns = [
     { name: 'Name', abbr: '', sort: 'name' },
     { name: 'Type', abbr: '', sort: 'type' },
@@ -98,28 +108,21 @@ const columns = [
     { name: 'Learned By', abbr: '', sort: false },
 ];
 
-const sortedBy = ref(null);
-const sortAsc = ref(false);
 const sortMoves = (name) => {
     sortedBy.value = name;
     sortAsc.value = !sortAsc.value;
+
+    const sort = (a, b) => {
+        const aValue = a[sortedBy.value];
+        const bValue = b[sortedBy.value];
+
+        if (sortAsc.value) {
+            return aValue > bValue ? 1 : -1;
+        }
+
+        return aValue < bValue ? 1 : -1;
+    };
+
+    movesList.value.sort(sort);
 };
-
-const sort = (a, b) => {
-    const aValue = a[sortedBy.value];
-    const bValue = b[sortedBy.value];
-
-    if (sortAsc.value) {
-        return aValue > bValue;
-    }
-
-    return aValue < bValue;
-};
-
-const sortedMovesList = computed(() => {
-    if (sortedBy.value === null) {
-        return props.moves;
-    }
-    return props.moves.toSorted(sort);
-});
 </script>

@@ -30,5 +30,6 @@ module.exports = {
     "rules": {
         indent: ['error', 4],
         'max-len': ['error', 120],
+        'operator-linebreak': ['error','after'],
     }
 }
