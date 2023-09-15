@@ -3,8 +3,11 @@
 namespace zbtnot\MonsterDb\Service;
 
 use zbtnot\MonsterDb\Model\DetailedMonster;
+use zbtnot\MonsterDb\Model\EvolutionMonster;
+use zbtnot\MonsterDb\Model\GraphicMonster;
 use zbtnot\MonsterDb\Model\Monster;
 use zbtnot\MonsterDb\Repository\CryRepository;
+use zbtnot\MonsterDb\Repository\EvolutionRepository;
 use zbtnot\MonsterDb\Repository\GraphicRepository;
 use zbtnot\MonsterDb\Repository\MonsterRepository;
 use zbtnot\MonsterDb\Repository\MoveRepository;
@@ -19,6 +22,7 @@ class DetailedMonsterService
         private readonly MoveRepository $moveRepository,
         private readonly MonsterRepository $monsterRepository,
         private readonly CryRepository $cryRepository,
+        private readonly EvolutionRepository $evolutionRepository,
     ) {
     }
 
@@ -32,7 +36,16 @@ class DetailedMonsterService
 
         $evolutions = $this->monsterRepository->fetchMonstersFromEvolutionTreeByMonsterId($monster->getId());
         foreach ($evolutions as &$evolutionList) {
-            $evolutionList = $this->illustrationService->fetchGraphicMonstersFromMonsters($evolutionList);
+            $graphicMonsters = $this->illustrationService->fetchGraphicMonstersFromMonsters($evolutionList);
+            $evolutionList = array_map(function (GraphicMonster $graphicMonster) {
+                $how = $this->evolutionRepository->fetchRequisiteByEvolutionId(
+                    $graphicMonster->getMonster()->getEvolutionHowId()
+                );
+
+                return (new EvolutionMonster())
+                    ->setMonster($graphicMonster)
+                    ->setRequisite($how);
+            }, $graphicMonsters);
         }
 
         return (new DetailedMonster($monster))

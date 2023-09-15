@@ -7,6 +7,11 @@
       "zbtnot\\MonsterDb\\": "src/"
     }
   },
+  "autoload-dev": {
+      "psr-4": {
+          "zbtnot\\MonsterDb\\Tests\\": "test/"
+      }
+  },
   "authors": [
     {
       "name": "Giorgio Arcamone",

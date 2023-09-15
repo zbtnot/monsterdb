@@ -22,7 +22,7 @@ class DetailedMonster implements \JsonSerializable
     /** @var Move[] */
     private array $moves;
 
-    /** @var array<int, GraphicMonster[]> */
+    /** @var array<int, EvolutionMonster[]> */
     private $evolutions;
 
     public function __construct(Monster $monster)
@@ -103,7 +103,7 @@ class DetailedMonster implements \JsonSerializable
         return $this->evolutions;
     }
 
-    /** @var array<int, GraphicMonster[]> $evolutions */
+    /** @var array<int, EvolutionMonster[]> $evolutions */
     public function setEvolutions($evolutions): self
     {
         $this->evolutions = $evolutions;

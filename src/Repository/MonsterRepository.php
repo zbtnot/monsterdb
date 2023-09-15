@@ -2,7 +2,6 @@
 
 namespace zbtnot\MonsterDb\Repository;
 
-use JetBrains\PhpStorm\ArrayShape;
 use zbtnot\MonsterDb\Model\Monster;
 
 class MonsterRepository extends Repository
@@ -52,12 +51,12 @@ class MonsterRepository extends Repository
     {
         $sql = <<<SQL
             WITH RECURSIVE evolution_tree AS (
-                SELECT from_monster_id, to_monster_id
-                FROM evolution WHERE from_monster_id = :id
+                SELECT from_monster_id, to_monster_id, evolution_how_id
+                    FROM evolution WHERE from_monster_id = :id
                 UNION
-                SELECT e.from_monster_id, e.to_monster_id
-                FROM evolution e
-                INNER JOIN evolution_tree et ON e.from_monster_id = et.to_monster_id
+                SELECT e.from_monster_id, e.to_monster_id, e.evolution_how_id
+                    FROM evolution e
+                    INNER JOIN evolution_tree et ON e.from_monster_id = et.to_monster_id
             )
             SELECT
                 evolution_tree.to_monster_id AS id,
@@ -65,7 +64,8 @@ class MonsterRepository extends Repository
                 monster.name,
                 stat.height,
                 stat.weight,
-                evolution_tree.from_monster_id
+                evolution_tree.from_monster_id,
+                evolution_tree.evolution_how_id
             FROM evolution_tree
             INNER JOIN monster ON evolution_tree.to_monster_id = monster.id
             INNER JOIN stat ON monster.id = stat.monster_id
@@ -84,7 +84,8 @@ class MonsterRepository extends Repository
                 ->setName($monster['name'])
                 ->setDexId($monster['dexId'])
                 ->setHeight($monster['height'])
-                ->setWeight($monster['weight']);
+                ->setWeight($monster['weight'])
+                ->setEvolutionHowId($monster['evolution_how_id']);
         }
 
         return $monsters;
