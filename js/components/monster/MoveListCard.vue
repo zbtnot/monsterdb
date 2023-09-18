@@ -67,8 +67,8 @@
                             {{ move.accuracy ? `${move.accuracy}%` : '-' }}
                         </td>
                         <td class="pr-6 py-2">
-                            {{ move.moveRequisite.requisiteType }} ({{
-                                move.moveRequisite.description
+                            {{ move.requisite.type }} ({{
+                                move.requisite.contents
                             }})
                         </td>
                     </tr>

@@ -3,7 +3,7 @@
 namespace zbtnot\MonsterDb\Repository;
 
 use zbtnot\MonsterDb\Model\Move;
-use zbtnot\MonsterDb\Model\MoveRequisite;
+use zbtnot\MonsterDb\Model\Requisite;
 use zbtnot\MonsterDb\Model\RequisiteType;
 use zbtnot\MonsterDb\Model\Type;
 
@@ -39,9 +39,9 @@ class MoveRepository extends Repository
             $type = (new Type())->setName($move['typeName']);
 
             $requisiteHow = RequisiteType::resolve($move['requisiteHow']);
-            $requisite = (new MoveRequisite())
-                ->setRequisiteType($requisiteHow)
-                ->setDescription($move['requisiteDescription']);
+            $requisite = (new Requisite())
+                ->setType($requisiteHow)
+                ->setContents($move['requisiteDescription']);
 
             $moves[] = (new Move())
                 ->setName($move['name'])
@@ -49,7 +49,7 @@ class MoveRepository extends Repository
                 ->setPower($move['power'])
                 ->setAccuracy($move['accuracy'])
                 ->setType($type)
-                ->setMoveRequisite($requisite)
+                ->setRequisite($requisite)
             ;
         }
 

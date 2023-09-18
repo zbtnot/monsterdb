@@ -35,8 +35,8 @@ class Requisite implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'type' => $this->type->value,
-            'contents' => $this->contents,
+            'type' => $this->getType()->value,
+            'contents' => $this->getContents(),
         ];
     }
 }
