@@ -10,7 +10,7 @@ class Move implements \JsonSerializable
     private ?int $power;
     private ?int $accuracy;
     private Type $type;
-    private ?MoveRequisite $moveRequisite;
+    private ?Requisite $requisite;
 
     public function setName(string $name): self
     {
@@ -72,15 +72,14 @@ class Move implements \JsonSerializable
         return $this->type;
     }
 
-
-    public function getMoveRequisite(): ?MoveRequisite
+    public function getRequisite(): ?Requisite
     {
-        return $this->moveRequisite;
+        return $this->requisite;
     }
 
-    public function setMoveRequisite(?MoveRequisite $moveRequisite): self
+    public function setRequisite(?Requisite $requisite): self
     {
-        $this->moveRequisite = $moveRequisite;
+        $this->requisite = $requisite;
 
         return $this;
     }
@@ -88,12 +87,12 @@ class Move implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name,
-            'pp' => $this->pp,
-            'power' => $this->power,
-            'accuracy' => $this->accuracy,
+            'name' => $this->getName(),
+            'pp' => $this->getPp(),
+            'power' => $this->getPower(),
+            'accuracy' => $this->getAccuracy(),
             'type' => $this->type->getName(),
-            'moveRequisite' => $this->moveRequisite,
+            'requisite' => $this->getRequisite(),
         ];
     }
 }

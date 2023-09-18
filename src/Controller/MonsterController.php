@@ -45,7 +45,7 @@ class MonsterController extends Controller
         try {
             $monster = $this->monsterService->fetchMonsterByDexId($args['id']);
             $detailedMonster = $this->detailedMonsterService->fetchDetailedMonsterFromMonster($monster);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $status = StatusCodeInterface::STATUS_BAD_REQUEST;
             $this->logger->error($e->getMessage());
         } finally {
