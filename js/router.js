@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ListPage from './components/pages/ListPage.vue';
-import DetailsPage from './components/pages/DetailsPage.vue';
+import MonsterListPage from './components/pages/MonsterListPage.vue';
+import MonsterDetailsPage from './components/pages/MonsterDetailsPage.vue';
+import MoveListPage from './components/pages/MoveListPage.vue';
+import MoveDetailsPage from './components/pages/MoveDetailsPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,12 +10,22 @@ const router = createRouter({
         {
             path: '/',
             name: 'listPage',
-            component: ListPage,
+            component: MonsterListPage,
         },
         {
             path: '/monster/:id',
             name: 'detailsPage',
-            component: DetailsPage,
+            component: MonsterDetailsPage,
+        },
+        {
+            path: '/move',
+            name: 'moveListPage',
+            component: MoveListPage,
+        },
+        {
+            path: '/move/:id',
+            name: 'moveDetailsPage',
+            component: MoveDetailsPage,
         },
     ],
 });

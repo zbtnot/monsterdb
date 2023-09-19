@@ -72,4 +72,19 @@ class GraphicRepository extends Repository
 
         return $statement->fetchColumn();
     }
+
+    public function fetchAnimationByMoveId(int $moveId): string
+    {
+        $sql = <<<SQL
+            SELECT
+                path
+            FROM move_animation
+            WHERE move_id = :id
+        SQL;
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([':id' => $moveId]);
+
+        return $statement->fetchColumn();
+    }
 }

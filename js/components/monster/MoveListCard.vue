@@ -55,7 +55,12 @@
                         v-for="(move, id) in movesList"
                         :key="move.name + id"
                     >
-                        <td class="pr-6 py-2">{{ move.name }}</td>
+                        <td class="pr-6 py-2">
+                            <router-link :to="`/move/${move.id}`">
+                                {{ move.name }}
+                                <ArrowTopRightOnSquareIcon class="h-4 w-4 mb-1 inline-block" />
+                            </router-link>
+                        </td>
                         <td class="pr-6 py-2">
                             <TypeBadge :type="move.type" />
                         </td>
@@ -66,7 +71,7 @@
                         <td class="pr-6 py-2">
                             {{ move.accuracy ? `${move.accuracy}%` : '-' }}
                         </td>
-                        <td class="pr-6 py-2">
+                        <td class="pr-6 py-2" v-if="!hideRequisite">
                             {{ move.requisite.type }} ({{
                                 move.requisite.contents
                             }})
@@ -84,16 +89,18 @@ import {
     ChevronUpDownIcon,
     ChevronUpIcon,
     ChevronDownIcon,
+    ArrowTopRightOnSquareIcon,
 } from '@heroicons/vue/24/solid';
-import TypeBadge from './TypeBadge.vue';
+import TypeBadge from '../TypeBadge.vue';
 
 const props = defineProps({
     moves: Array,
+    hideRequisite: { type: Boolean, default: false },
 });
 
 const movesList = ref([]);
 const sortedBy = ref(null);
-const sortAsc = ref(false);
+const sortAsc = ref(true);
 
 onMounted(() => {
     movesList.value = [...props.moves];
@@ -105,12 +112,19 @@ const columns = [
     { name: 'Power', abbr: '', sort: 'power' },
     { name: 'PP', abbr: 'Power Points', sort: 'pp' },
     { name: 'Accuracy', abbr: '', sort: 'accuracy' },
-    { name: 'Learned By', abbr: '', sort: false },
 ];
+if (!props.hideRequisite) {
+    const requisiteColumn = { name: 'Learned By', abbr: '', sort: false };
+    columns.push(requisiteColumn);
+}
 
 const sortMoves = (name) => {
+    if (sortedBy.value !== name) {
+        sortAsc.value = true;
+    } else {
+        sortAsc.value = !sortAsc.value;
+    }
     sortedBy.value = name;
-    sortAsc.value = !sortAsc.value;
 
     const sort = (a, b) => {
         const aValue = a[sortedBy.value];
