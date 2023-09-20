@@ -46,6 +46,32 @@ class MonsterRepository extends Repository
         return $statement->fetchObject(Monster::class) ?: null;
     }
 
+    /**
+     * @param int[] $ids
+     * @return Monster[]
+     */
+    public function fetchMonstersByIds(array $ids): array
+    {
+        $sql = <<<SQL
+            SELECT
+                monster.id,
+                dex_id AS dexId,
+                name,
+                height,
+                weight
+            FROM monster
+            INNER JOIN stat ON monster.id = stat.monster_id
+            WHERE dex_id = :id
+        SQL;
+        $statement = $this->pdo->prepare($sql);
+
+        return array_map(function (int $id) use ($statement) {
+            $statement->execute([':id' => $id]);
+
+            return $statement->fetchObject(Monster::class);
+        }, $ids);
+    }
+
     /** @return array<int, array<Monster>> */
     public function fetchMonstersFromEvolutionTreeByMonsterId(int $id): array
     {

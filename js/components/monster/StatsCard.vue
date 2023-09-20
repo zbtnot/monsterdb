@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import TypeBadge from './TypeBadge.vue';
+import TypeBadge from '../TypeBadge.vue';
 
 defineProps({
     monster: Object,

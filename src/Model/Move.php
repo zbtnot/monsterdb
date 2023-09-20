@@ -5,12 +5,25 @@ namespace zbtnot\MonsterDb\Model;
 // Represents a move and its requirement to be learned
 class Move implements \JsonSerializable
 {
+    private int $id;
     private string $name;
     private int $pp;
     private ?int $power;
     private ?int $accuracy;
     private Type $type;
     private ?Requisite $requisite;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function setName(string $name): self
     {
@@ -74,7 +87,7 @@ class Move implements \JsonSerializable
 
     public function getRequisite(): ?Requisite
     {
-        return $this->requisite;
+        return $this->requisite ?? null;
     }
 
     public function setRequisite(?Requisite $requisite): self
@@ -87,6 +100,7 @@ class Move implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->getId(),
             'name' => $this->getName(),
             'pp' => $this->getPp(),
             'power' => $this->getPower(),

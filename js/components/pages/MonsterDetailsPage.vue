@@ -20,7 +20,9 @@
     </template>
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import axiosClient from '../../axios';
 import Banner from '../AppBanner.vue';
 import StatsCard from '../monster/StatsCard.vue';
@@ -29,39 +31,20 @@ import EvolutionCard from '../monster/EvolutionCard.vue';
 import SpriteCard from '../monster/SpriteCard.vue';
 import CryCard from '../monster/CryCard.vue';
 
-export default {
-    components: {
-        CryCard,
-        SpriteCard,
-        EvolutionCard,
-        MoveListCard,
-        StatsCard,
-        Banner,
-    },
-    async created() {
-        try {
-            this.monster = (
-                await axiosClient.get(`/monster/${this.$route.params.id}`)
-            ).data;
-        } catch (e) {
-            this.error =
-                'There was a problem loading the page. Please try again.';
-        } finally {
-            this.loaded = true;
-        }
-    },
-    data() {
-        return {
-            loaded: false,
-            error: '',
-            monster: {
-                dexId: 0,
-                moves: [],
-                evolutions: [],
-                spritePath: '',
-                cryPath: '',
-            },
-        };
-    },
-};
+const route = useRoute();
+const loaded = ref(false);
+const error = ref('');
+const monster = ref({});
+
+onMounted(async () => {
+    try {
+        monster.value = (
+            await axiosClient.get(`/monster/${route.params.id}`)
+        ).data;
+    } catch (e) {
+        error.value = 'There was a problem loading the page. Please try again.';
+    } finally {
+        loaded.value = true;
+    }
+});
 </script>
