@@ -35,6 +35,7 @@ onMounted(async () => {
         error.value = 'There was a problem loading the page. Please try again.';
     } finally {
         loaded.value = true;
+        document.title = `${import.meta.env.VITE_APP_TITLE} | ${move.value.name}`;
     }
 });
 </script>

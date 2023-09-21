@@ -5,7 +5,7 @@
     <template v-else>
         <div v-if="!loaded">Loading..</div>
         <div v-else class="flex flex-wrap mt-4 px-5">
-            <MoveListCard class="w-full" :moves="moves" hide-requisite />
+            <MoveListCard class="w-full mb-5" :moves="moves" hide-requisite />
         </div>
     </template>
 </template>
@@ -32,6 +32,7 @@ onMounted(async () => {
         error.value = 'There was a problem loading the page. Please try again.';
     } finally {
         loaded.value = true;
+        document.title = `${import.meta.env.VITE_APP_TITLE} | Moves`;
     }
 });
 </script>

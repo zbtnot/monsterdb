@@ -60,5 +60,6 @@ try {
     error.value = 'There was a problem loading the page. Please try again.';
 } finally {
     loaded = true;
+    document.title = `${import.meta.env.VITE_APP_TITLE} | Monsters`;
 }
 </script>
