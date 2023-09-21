@@ -10,6 +10,7 @@
                 :illustration-path="monster.illustrationPath"
                 :key="monster.dexId"
             />
+            <span v-if="monsters.length === 0">This move is not learned by any monster.</span>
         </div>
     </div>
 </template>

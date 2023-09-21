@@ -17,7 +17,7 @@
                     </tr>
                     <tr class="hover:bg-slate-700">
                         <th class="w-1/2 py-2">Power</th>
-                        <td class="w-1/2 py-2">{{ move.power }}</td>
+                        <td class="w-1/2 py-2">{{ `${move.power ?? '-'}`}}</td>
                     </tr>
                     <tr class="hover:bg-slate-700">
                         <th class="w-1/2 py-2"><abbr title="Power Points">PP</abbr></th>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr class="hover:bg-slate-700">
                         <th class="w-1/2 py-2">Accuracy</th>
-                        <td class="w-1/2 py-2">{{ move.accuracy }}</td>
+                        <td class="w-1/2 py-2">{{ `${move.accuracy !== null ? move.accuracy + '%' : '-'}`}}</td>
                     </tr>
                 </tbody>
             </table>
