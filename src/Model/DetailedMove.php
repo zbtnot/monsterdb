@@ -4,30 +4,33 @@ namespace zbtnot\MonsterDb\Model;
 
 class DetailedMove implements \JsonSerializable
 {
-    private string $animationPath;
+    /** @var Animation[] */
+    private array $animations;
 
     /** @var GraphicMonster[] */
     private array $monsters;
 
-    public function __construct(private Move $move)
+    public function __construct(private readonly Move $move)
     {
+    }
+
+    /** @return Animation[] */
+    public function getAnimations(): array
+    {
+        return $this->animations;
+    }
+
+    /** @param Animation[] $animations */
+    public function setAnimations(array $animations): self
+    {
+        $this->animations = $animations;
+
+        return $this;
     }
 
     public function getMove(): Move
     {
         return $this->move;
-    }
-
-    public function getAnimationPath(): string
-    {
-        return $this->animationPath;
-    }
-
-    public function setAnimationPath(string $animationPath): self
-    {
-        $this->animationPath = $animationPath;
-
-        return $this;
     }
 
     /** @return GraphicMonster[] */
@@ -47,7 +50,7 @@ class DetailedMove implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $fields = [
-            'animationPath' => $this->getAnimationPath(),
+            'animations' => $this->getAnimations(),
             'monsters' => $this->getMonsters(),
         ];
 

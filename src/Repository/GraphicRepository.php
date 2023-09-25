@@ -2,6 +2,8 @@
 
 namespace zbtnot\MonsterDb\Repository;
 
+use zbtnot\MonsterDb\Model\Animation;
+
 class GraphicRepository extends Repository
 {
     /** @return array<int, string> */
@@ -73,18 +75,25 @@ class GraphicRepository extends Repository
         return $statement->fetchColumn();
     }
 
-    public function fetchAnimationByMoveId(int $moveId): string
+    /** @return Animation[] */
+    public function fetchAnimationsByMoveId(int $moveId): array
     {
         $sql = <<<SQL
             SELECT
-                path
+                path,
+                mimeType
             FROM move_animation
             WHERE move_id = :id
         SQL;
 
         $statement = $this->pdo->prepare($sql);
         $statement->execute([':id' => $moveId]);
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $statement->fetchColumn();
+        $animationMapper = fn(array $row) => (new Animation())
+            ->setPath($row['path'])
+            ->setMimeType($row['mimeType']);
+
+        return array_map($animationMapper, $rows);
     }
 }

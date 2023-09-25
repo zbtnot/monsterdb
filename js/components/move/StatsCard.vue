@@ -1,8 +1,13 @@
 <template>
     <div class="w-auto md:mx-5 rounded bg-slate-600 p-2">
         <div class="m-2 text-center text-2xl font-bold">
-            <video muted autoplay loop class="w-full">
-                <source :src="move.animationPath" type="video/webm" />
+            <video muted autoplay loop playsinline class="w-full">
+                <source
+                    v-for="(animation, key) in move.animations"
+                    :src="animation.path"
+                    :type="animation.mimeType"
+                    :key="key"
+                />
             </video>
             {{ move.name }}
         </div>

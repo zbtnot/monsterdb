@@ -4,6 +4,7 @@ namespace zbtnot\MonsterDb\Tests\Service;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use zbtnot\MonsterDb\Model\Animation;
 use zbtnot\MonsterDb\Model\DetailedMove;
 use zbtnot\MonsterDb\Model\GraphicMonster;
 use zbtnot\MonsterDb\Model\Monster;
@@ -62,14 +63,16 @@ class MoveServiceTest extends TestCase
     {
 
         $move = (new Move())->setId(123);
-        $animationPath = '/foo.webm';
+        $animations = [
+            (new Animation())->setPath('/foo.webm')->setMimeType('video/webm')
+        ];
         $monster = (new Monster())->setId(456);
         $graphicMonster = new GraphicMonster($monster);
 
         $this->graphicRepository
-            ->method('fetchAnimationByMoveId')
+            ->method('fetchAnimationsByMoveId')
             ->with(123)
-            ->willReturn($animationPath);
+            ->willReturn($animations);
 
         $this->moveRepository
             ->method('fetchMonsterIdsByMoveId')
@@ -86,7 +89,7 @@ class MoveServiceTest extends TestCase
             ->with([$monster])
             ->willReturn([$graphicMonster]);
 
-        $expected = (new DetailedMove($move))->setAnimationPath($animationPath)->setMonsters([$graphicMonster]);
+        $expected = (new DetailedMove($move))->setAnimations($animations)->setMonsters([$graphicMonster]);
         $result = $this->moveService->fetchDetailedMoveByMove($move);
         $this->assertEquals($expected, $result);
     }

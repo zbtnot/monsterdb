@@ -31,13 +31,13 @@ class MoveService
 
     public function fetchDetailedMoveByMove(Move $move): DetailedMove
     {
-        $animationPath = $this->graphicRepository->fetchAnimationByMoveId($move->getId());
+        $animations = $this->graphicRepository->fetchAnimationsByMoveId($move->getId());
         $monsterIds = $this->moveRepository->fetchMonsterIdsByMoveId($move->getId());
         $monsters = $this->monsterRepository->fetchMonstersByIds($monsterIds);
         $graphicMonsters = $this->graphicService->fetchGraphicMonstersFromMonsters($monsters);
 
         return (new DetailedMove($move))
-            ->setAnimationPath($animationPath)
+            ->setAnimations($animations)
             ->setMonsters($graphicMonsters);
     }
 }
