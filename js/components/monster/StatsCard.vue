@@ -1,5 +1,5 @@
 <template>
-    <div class="w-fit md:mx-5 rounded bg-slate-600 p-2">
+    <div class="w-full md:w-fit md:mx-5 rounded bg-slate-600 p-2">
         <div class="m-2 text-center text-2xl font-bold">
             <img class="w-1/2 mx-auto" :src="`${monster.illustrationPath}`" alt="a pokemon" />
             {{ monster.name }}
