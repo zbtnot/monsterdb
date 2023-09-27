@@ -9,6 +9,7 @@ class Monster implements \JsonSerializable
     private string $name;
     private float $height;
     private float $weight;
+    private string $description;
     private ?int $evolutionHowId = null;
 
     public function getId(): int
@@ -71,6 +72,18 @@ class Monster implements \JsonSerializable
         return $this;
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     public function getEvolutionHowId(): ?int
     {
         return $this->evolutionHowId;
@@ -90,6 +103,7 @@ class Monster implements \JsonSerializable
             'name' => $this->getName(),
             'weight' => $this->getWeight(),
             'height' => $this->getHeight(),
+            'description' => $this->getDescription(),
         ];
     }
 }

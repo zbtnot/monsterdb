@@ -15,7 +15,8 @@ class MonsterRepository extends Repository
                 dex_id AS dexId,
                 name,
                 weight,
-                height
+                height,
+                description
             FROM monster
             INNER JOIN stat ON monster.id = stat.monster_id
             LIMIT :offset, :count
@@ -35,7 +36,8 @@ class MonsterRepository extends Repository
                 dex_id AS dexId,
                 name,
                 height,
-                weight
+                weight,
+                description
             FROM monster
             INNER JOIN stat ON monster.id = stat.monster_id
             WHERE dex_id = :id
@@ -58,7 +60,8 @@ class MonsterRepository extends Repository
                 dex_id AS dexId,
                 name,
                 height,
-                weight
+                weight,
+                description
             FROM monster
             INNER JOIN stat ON monster.id = stat.monster_id
             WHERE dex_id = :id
@@ -90,6 +93,7 @@ class MonsterRepository extends Repository
                 monster.name,
                 stat.height,
                 stat.weight,
+                stat.description,
                 evolution_tree.from_monster_id,
                 evolution_tree.evolution_how_id
             FROM evolution_tree
@@ -111,6 +115,7 @@ class MonsterRepository extends Repository
                 ->setDexId($monster['dexId'])
                 ->setHeight($monster['height'])
                 ->setWeight($monster['weight'])
+                ->setDescription($monster['description'])
                 ->setEvolutionHowId($monster['evolution_how_id']);
         }
 
