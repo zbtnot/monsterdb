@@ -8,16 +8,16 @@
             <table class="w-full">
                 <tbody class="divide-y-2 divide-dotted text-left">
                     <tr class="hover:bg-slate-700">
-                        <th class="w-1/2 py-2">Dex ID</th>
-                        <td class="w-1/2 py-2">
+                        <th class="w-1/3 py-2">Dex ID</th>
+                        <td class="w-2/3 py-2">
                             #{{ String(monster.dexId).padStart(3, '0') }}
                         </td>
                     </tr>
                     <tr class="hover:bg-slate-700">
-                        <th class="w-1/2 py-2">
+                        <th class="w-1/3 py-2">
                             {{ `Type${monster.types.length > 1 ? 's' : ''}` }}
                         </th>
-                        <td class="w-1/2 py-2">
+                        <td class="w-2/3 py-2">
                             <TypeBadge
                                 v-for="type in monster.types"
                                 :type="type"
@@ -27,19 +27,27 @@
                         </td>
                     </tr>
                     <tr class="hover:bg-slate-700">
-                        <th class="w-1/2 py-2">
+                        <th class="w-1/3 py-2">
                             Height
                         </th>
-                        <td class="w-1/2 py-2">
+                        <td class="w-2/3 py-2">
                             {{ `${Math.trunc(monster.height / 12)}' ${monster.height % 12}"` }}
                         </td>
                     </tr>
                     <tr class="hover:bg-slate-700">
-                        <th class="w-1/2 py-2">
+                        <th class="w-1/3 py-2">
                             Weight
                         </th>
-                        <td class="w-1/2 py-2">
+                        <td class="w-2/3 py-2">
                             {{ monster.weight }} LB
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-slate-700">
+                        <th class="w-1/3 py-2">
+                            Dex Entry
+                        </th>
+                        <td class="w-2/3 py-2">
+                            {{ monster.description }}
                         </td>
                     </tr>
                 </tbody>
