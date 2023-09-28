@@ -25,6 +25,9 @@ class DetailedMonster implements \JsonSerializable
     /** @var array<int, EvolutionMonster[]> */
     private $evolutions;
 
+    /** @var Location[] */
+    private array $locations;
+
     public function __construct(Monster $monster)
     {
         $this->monster = $monster;
@@ -111,6 +114,20 @@ class DetailedMonster implements \JsonSerializable
         return $this;
     }
 
+    /** @return Location[] */
+    public function getLocations(): array
+    {
+        return $this->locations;
+    }
+
+    /** @param Location[] $locations */
+    public function setLocations(array $locations): self
+    {
+        $this->locations = $locations;
+
+        return $this;
+    }
+
     public function jsonSerialize(): array
     {
         $fields = [
@@ -120,6 +137,7 @@ class DetailedMonster implements \JsonSerializable
             'cryPath' => $this->getCryPath(),
             'moves' => $this->getMoves(),
             'evolutions' => $this->getEvolutions(),
+            'locations' => $this->getLocations(),
         ];
 
         return array_merge($fields, $this->monster->jsonSerialize());

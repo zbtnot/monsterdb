@@ -30,6 +30,8 @@ module.exports = {
     "rules": {
         indent: ['error', 4],
         'max-len': ['error', 120],
-        'operator-linebreak': ['error','after'],
+        'operator-linebreak': ['error', 'after'],
+        'no-plusplus': ['error', {'allowForLoopAfterthoughts': true}],
+        'object-curly-newline': ['error', {ObjectPattern: {multiline: true}}]
     }
 }

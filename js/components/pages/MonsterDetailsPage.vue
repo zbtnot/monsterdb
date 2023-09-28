@@ -15,6 +15,7 @@
             </div>
             <div class="w-full md:w-2/3">
                 <MoveListCard :moves="monster.moves" class="mb-5" />
+                <LocationCard :locations="monster.locations" class="mb-5" />
             </div>
         </div>
     </template>
@@ -30,6 +31,7 @@ import MoveListCard from '../monster/MoveListCard.vue';
 import EvolutionCard from '../monster/EvolutionCard.vue';
 import SpriteCard from '../monster/SpriteCard.vue';
 import CryCard from '../monster/CryCard.vue';
+import LocationCard from '../monster/LocationCard.vue';
 
 const route = useRoute();
 const loaded = ref(false);
@@ -45,7 +47,9 @@ onMounted(async () => {
         error.value = 'There was a problem loading the page. Please try again.';
     } finally {
         loaded.value = true;
-        document.title = `${import.meta.env.VITE_APP_TITLE} | ${monster.value.name}`;
+        document.title = `${import.meta.env.VITE_APP_TITLE} | ${
+            monster.value.name
+        }`;
     }
 });
 </script>

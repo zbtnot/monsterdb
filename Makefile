@@ -19,6 +19,8 @@ db:
 	sqlite3 db.sqlite < sql/sprite.sql
 	sqlite3 db.sqlite < sql/cry.sql
 	sqlite3 db.sqlite < sql/stat.sql
+	sqlite3 db.sqlite < sql/location.sql
+	sqlite3 db.sqlite < sql/monster_location.sql
 
 npm:
 	npm ci
