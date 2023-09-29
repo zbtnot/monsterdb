@@ -9,6 +9,7 @@ use zbtnot\MonsterDb\Model\Monster;
 use zbtnot\MonsterDb\Repository\CryRepository;
 use zbtnot\MonsterDb\Repository\EvolutionRepository;
 use zbtnot\MonsterDb\Repository\GraphicRepository;
+use zbtnot\MonsterDb\Repository\LocationRepository;
 use zbtnot\MonsterDb\Repository\MonsterRepository;
 use zbtnot\MonsterDb\Repository\MoveRepository;
 use zbtnot\MonsterDb\Repository\TypeRepository;
@@ -23,6 +24,7 @@ class DetailedMonsterService
         private readonly MonsterRepository $monsterRepository,
         private readonly CryRepository $cryRepository,
         private readonly EvolutionRepository $evolutionRepository,
+        private readonly LocationRepository $locationRepository,
     ) {
     }
 
@@ -33,6 +35,7 @@ class DetailedMonsterService
         $sprite = $this->illustrationRepository->fetchSpriteByMonsterId($monster->getId());
         $cry = $this->cryRepository->fetchCryByMonsterId($monster->getId());
         $moves = $this->moveRepository->getMovesByMonsterId($monster->getId());
+        $locations = $this->locationRepository->findLocationsByMonsterId($monster->getId());
 
         $evolutions = $this->monsterRepository->fetchMonstersFromEvolutionTreeByMonsterId($monster->getId());
         foreach ($evolutions as &$evolutionList) {
@@ -54,6 +57,7 @@ class DetailedMonsterService
             ->setSpritePath($sprite)
             ->setCryPath($cry)
             ->setMoves($moves)
-            ->setEvolutions($evolutions);
+            ->setEvolutions($evolutions)
+            ->setLocations($locations);
     }
 }
