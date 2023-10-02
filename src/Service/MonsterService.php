@@ -28,4 +28,18 @@ class MonsterService
 
         return $monster;
     }
+
+    /** @return array<string, Monster> */
+    public function fetchNextPreviousMonstersByDexId(int $dexId): array
+    {
+        $monsters = $this->monsterRepository->fetchNextPreviousMonsterById($dexId);
+        $reducer = function (array $carry, Monster $monster) use ($dexId) {
+            $key = $monster->getDexId() < $dexId ? 'previous' : 'next';
+            $carry[$key] = $monster;
+
+            return $carry;
+        };
+
+        return array_reduce($monsters, $reducer, []);
+    }
 }
