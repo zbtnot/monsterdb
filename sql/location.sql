@@ -50,6 +50,7 @@ VALUES
     ('Fuschia City',                80,     104,    8,  8),
     ('Safari Zone',                 80,     104,    4,  4),
     ('Cinnabar Island',             32,     120,    8,  8),
+    ('Pokemon Mansion',             32,     120,    4,  4),
     ('Viridian Forest',             32,     32,     8,  8),
     ('Diglett''s Cave',             40,     32,     8,  8),
     ('Mt. Moon',                    64,     16,     8,  8),
