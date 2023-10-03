@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full md:w-fit md:mx-5 rounded bg-slate-600 p-2">
+    <div class="w-auto md:mx-5 rounded bg-slate-600 p-2">
         <div class="m-2">
             <div class="text-center text-2xl font-bold">
                 {{ monster.name }}
