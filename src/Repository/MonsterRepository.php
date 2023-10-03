@@ -48,6 +48,28 @@ class MonsterRepository extends Repository
         return $statement->fetchObject(Monster::class) ?: null;
     }
 
+    /** @return Monster[] */
+    public function fetchNextPreviousMonsterById(int $id): array
+    {
+        $sql = <<<SQL
+            SELECT
+                monster.id,
+                dex_id AS dexId,
+                name,
+                height,
+                weight,
+                description
+            FROM monster
+            INNER JOIN stat ON monster.id = stat.monster_id
+            WHERE dex_id BETWEEN (:id - 1) AND (:id + 1) AND dex_id != :id
+        SQL;
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, Monster::class);
+    }
+
     /**
      * @param int[] $ids
      * @return Monster[]

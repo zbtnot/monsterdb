@@ -4,7 +4,7 @@
         <Banner v-if="error.length !== 0" :message="error" />
         <div v-else class="flex flex-wrap mt-4 px-5">
             <div class="w-full md:w-1/3">
-                <StatsCard :monster="monster" class="mb-5" />
+                <StatsCard :monster="monster" :next="nextMonster" :previous="previousMonster" class="mb-5" />
                 <EvolutionCard
                     :evolutions="monster.evolutions"
                     :monster="monster"
@@ -37,12 +37,15 @@ const route = useRoute();
 const loaded = ref(false);
 const error = ref('');
 const monster = ref({});
+const nextMonster = ref(undefined);
+const previousMonster = ref(undefined);
 
 onMounted(async () => {
     try {
-        monster.value = (
-            await axiosClient.get(`/monster/${route.params.id}`)
-        ).data;
+        const monsterData = (await axiosClient.get(`/monster/${route.params.id}`)).data;
+        monster.value = monsterData.monster;
+        nextMonster.value = monsterData.next;
+        previousMonster.value = monsterData.previous;
     } catch (e) {
         error.value = 'There was a problem loading the page. Please try again.';
     } finally {

@@ -45,12 +45,15 @@ class MonsterController extends Controller
         try {
             $monster = $this->monsterService->fetchMonsterByDexId($args['id']);
             $detailedMonster = $this->detailedMonsterService->fetchDetailedMonsterFromMonster($monster);
+            $nextPreviousMonsters = $this->monsterService->fetchNextPreviousMonstersByDexId($args['id']);
+
+            $result = array_merge(['monster' => $detailedMonster], $nextPreviousMonsters);
         } catch (\Throwable $e) {
             $status = StatusCodeInterface::STATUS_BAD_REQUEST;
             $this->logger->error($e->getMessage());
         } finally {
             return new JsonResponse(
-                $detailedMonster ?? '',
+                $result ?? '',
                 $response->withStatus($status)
             );
         }
