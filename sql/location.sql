@@ -46,6 +46,7 @@ VALUES
     ('Vermilion City',              96,     72,     8,  8),
     ('Celadon City',                72,     40,     8,  8),
     ('Lavender Town',               128,    40,     8,  8),
+    ('Pokemon Tower',               128,    40,     4,  4),
     ('Power Plant',                 136,    32,     8,  8),
     ('Fuschia City',                80,     104,    8,  8),
     ('Safari Zone',                 80,     104,    4,  4),

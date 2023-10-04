@@ -309,6 +309,119 @@ INSERT INTO monster_location (monster_id, location_id) VALUES
 ((SELECT id FROM monster WHERE name = 'Shellder'), (SELECT id FROM location WHERE name = 'Route 20')),
 ((SELECT id FROM monster WHERE name = 'Shellder'), (SELECT id FROM location WHERE name = 'Route 21')),
 ((SELECT id FROM monster WHERE name = 'Shellder'), (SELECT id FROM location WHERE name = 'Vermilion City')),
-((SELECT id FROM monster WHERE name = 'Shellder'), (SELECT id FROM location WHERE name = 'Cinnabar Island'))
+((SELECT id FROM monster WHERE name = 'Shellder'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
+
+((SELECT id FROM monster WHERE name = 'Gastly'), (SELECT id FROM location WHERE name = 'Pokemon Tower')),
+
+((SELECT id FROM monster WHERE name = 'Haunter'), (SELECT id FROM location WHERE name = 'Pokemon Tower')),
+
+((SELECT id FROM monster WHERE name = 'Onix'), (SELECT id FROM location WHERE name = 'Rock Tunnel')),
+((SELECT id FROM monster WHERE name = 'Onix'), (SELECT id FROM location WHERE name = 'Victory Road')),
+
+((SELECT id FROM monster WHERE name = 'Drowzee'), (SELECT id FROM location WHERE name = 'Route 11')),
+
+((SELECT id FROM monster WHERE name = 'Hypno'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 6')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 11')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 12')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 13')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 17')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 18')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 24')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Route 25')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Cerulean City')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Vermilion City')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Fuschia City')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Krabby'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+
+((SELECT id FROM monster WHERE name = 'Kingler'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Kingler'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+((SELECT id FROM monster WHERE name = 'Kingler'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+
+((SELECT id FROM monster WHERE name = 'Voltorb'), (SELECT id FROM location WHERE name = 'Route 10')),
+((SELECT id FROM monster WHERE name = 'Voltorb'), (SELECT id FROM location WHERE name = 'Power Plant')),
+
+((SELECT id FROM monster WHERE name = 'Electrode'), (SELECT id FROM location WHERE name = 'Power Plant')),
+((SELECT id FROM monster WHERE name = 'Electrode'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+((SELECT id FROM monster WHERE name = 'Electrode'), (SELECT id FROM location WHERE name = 'Pokemon Lab')),
+
+((SELECT id FROM monster WHERE name = 'Exeggcute'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+
+((SELECT id FROM monster WHERE name = 'Cubone'), (SELECT id FROM location WHERE name = 'Pokemon Tower')),
+
+((SELECT id FROM monster WHERE name = 'Marowak'), (SELECT id FROM location WHERE name = 'Victory Road')),
+((SELECT id FROM monster WHERE name = 'Marowak'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Hitmonlee'), (SELECT id FROM location WHERE name = 'Saffron City')),
+
+((SELECT id FROM monster WHERE name = 'Hitmonchan'), (SELECT id FROM location WHERE name = 'Saffron City')),
+
+((SELECT id FROM monster WHERE name = 'Lickitung'), (SELECT id FROM location WHERE name = 'Route 18')),
+
+((SELECT id FROM monster WHERE name = 'Koffing'), (SELECT id FROM location WHERE name = 'Pokemon Mansion')),
+
+((SELECT id FROM monster WHERE name = 'Weezing'), (SELECT id FROM location WHERE name = 'Pokemon Mansion')),
+
+((SELECT id FROM monster WHERE name = 'Rhyhorn'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+
+((SELECT id FROM monster WHERE name = 'Rhydon'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Chansey'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Chansey'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Tangela'), (SELECT id FROM location WHERE name = 'Route 21')),
+((SELECT id FROM monster WHERE name = 'Tangela'), (SELECT id FROM location WHERE name = 'Pokemon Lab')),
+
+((SELECT id FROM monster WHERE name = 'Kangaskhan'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+
+((SELECT id FROM monster WHERE name = 'Horsea'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Horsea'), (SELECT id FROM location WHERE name = 'Route 19')),
+((SELECT id FROM monster WHERE name = 'Horsea'), (SELECT id FROM location WHERE name = 'Route 20')),
+((SELECT id FROM monster WHERE name = 'Horsea'), (SELECT id FROM location WHERE name = 'Route 21')),
+((SELECT id FROM monster WHERE name = 'Horsea'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
+
+((SELECT id FROM monster WHERE name = 'Seadra'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Seadra'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Seadra'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 6')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 10')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 11')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 12')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 13')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 17')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 18')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 19')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 20')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 21')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 22')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 24')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Route 25')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Pallet Town')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Viridian City')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Cerulean City')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Vermilion City')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Celadon City')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Fuschia City')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Indigo Plateau')),
+((SELECT id FROM monster WHERE name = 'Goldeen'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Seaking'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Seaking'), (SELECT id FROM location WHERE name = 'Fuschia City')),
+((SELECT id FROM monster WHERE name = 'Seaking'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Route 19')),
+((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Route 20')),
+((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Route 21')),
+((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
+
+((SELECT id FROM monster WHERE name = 'Mr. Mime'), (SELECT id FROM location WHERE name = 'Route 2'))
 
 ;
