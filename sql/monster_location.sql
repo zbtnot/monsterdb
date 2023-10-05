@@ -422,6 +422,75 @@ INSERT INTO monster_location (monster_id, location_id) VALUES
 ((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Route 21')),
 ((SELECT id FROM monster WHERE name = 'Staryu'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
 
-((SELECT id FROM monster WHERE name = 'Mr. Mime'), (SELECT id FROM location WHERE name = 'Route 2'))
+((SELECT id FROM monster WHERE name = 'Mr. Mime'), (SELECT id FROM location WHERE name = 'Route 2')),
 
+((SELECT id FROM monster WHERE name = 'Scyther'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Scyther'), (SELECT id FROM location WHERE name = 'Celadon City')),
+
+((SELECT id FROM monster WHERE name = 'Jynx'), (SELECT id FROM location WHERE name = 'Cerulean City')),
+
+((SELECT id FROM monster WHERE name = 'Electabuzz'), (SELECT id FROM location WHERE name = 'Power Plant')),
+
+((SELECT id FROM monster WHERE name = 'Magmar'), (SELECT id FROM location WHERE name = 'Pokemon Mansion')),
+
+((SELECT id FROM monster WHERE name = 'Pinsir'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Pinsir'), (SELECT id FROM location WHERE name = 'Celadon City')),
+
+((SELECT id FROM monster WHERE name = 'Tauros'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 6')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 10')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 11')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 12')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 13')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 17')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 18')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 19')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 20')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 21')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 22')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 24')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 25')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Pallet Town')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Viridian City')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Cerulean City')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Vermilion City')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Celadon City')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Fuschia City')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Cinnabar Island')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Indigo Plateau')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+((SELECT id FROM monster WHERE name = 'Magikarp'), (SELECT id FROM location WHERE name = 'Route 4')),
+
+((SELECT id FROM monster WHERE name = 'Lapras'), (SELECT id FROM location WHERE name = 'Saffron City')),
+
+((SELECT id FROM monster WHERE name = 'Ditto'), (SELECT id FROM location WHERE name = 'Route 13')),
+((SELECT id FROM monster WHERE name = 'Ditto'), (SELECT id FROM location WHERE name = 'Route 14')),
+((SELECT id FROM monster WHERE name = 'Ditto'), (SELECT id FROM location WHERE name = 'Route 15')),
+((SELECT id FROM monster WHERE name = 'Ditto'), (SELECT id FROM location WHERE name = 'Route 23')),
+((SELECT id FROM monster WHERE name = 'Ditto'), (SELECT id FROM location WHERE name = 'Cerulean Cave')),
+
+((SELECT id FROM monster WHERE name = 'Eevee'), (SELECT id FROM location WHERE name = 'Celadon Mansion')),
+
+((SELECT id FROM monster WHERE name = 'Porygon'), (SELECT id FROM location WHERE name = 'Celadon City')),
+
+-- where their key items are located
+((SELECT id FROM monster WHERE name = 'Omanyte'), (SELECT id FROM location WHERE name = 'Mt. Moon')),
+((SELECT id FROM monster WHERE name = 'Kabuto'), (SELECT id FROM location WHERE name = 'Mt. Moon')),
+((SELECT id FROM monster WHERE name = 'Aerodactyl'), (SELECT id FROM location WHERE name = 'Pewter City')),
+
+((SELECT id FROM monster WHERE name = 'Snorlax'), (SELECT id FROM location WHERE name = 'Route 12')),
+((SELECT id FROM monster WHERE name = 'Snorlax'), (SELECT id FROM location WHERE name = 'Route 16')),
+
+((SELECT id FROM monster WHERE name = 'Articuno'), (SELECT id FROM location WHERE name = 'Seafoam Islands')),
+((SELECT id FROM monster WHERE name = 'Zapdos'), (SELECT id FROM location WHERE name = 'Power Plant')),
+((SELECT id FROM monster WHERE name = 'Moltres'), (SELECT id FROM location WHERE name = 'Victory Road')),
+
+((SELECT id FROM monster WHERE name = 'Dratini'), (SELECT id FROM location WHERE name = 'Safari Zone')),
+((SELECT id FROM monster WHERE name = 'Dratini'), (SELECT id FROM location WHERE name = 'Celadon City')),
+
+((SELECT id FROM monster WHERE name = 'Mewtwo'), (SELECT id FROM location WHERE name = 'Cerulean Cave'))
 ;

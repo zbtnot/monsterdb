@@ -45,6 +45,7 @@ VALUES
     ('Saffron City',                96,     40,     8,  8),
     ('Vermilion City',              96,     72,     8,  8),
     ('Celadon City',                72,     40,     8,  8),
+    ('Celadon Mansion',             72,     40,     4,  4),
     ('Lavender Town',               128,    40,     8,  8),
     ('Pokemon Tower',               128,    40,     4,  4),
     ('Power Plant',                 136,    32,     8,  8),
