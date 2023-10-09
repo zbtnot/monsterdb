@@ -7,7 +7,7 @@ use zbtnot\MonsterDb\Model\Location;
 class LocationRepository extends Repository
 {
     /** @return Location[] */
-    public function fetchLocations(): array
+    public function fetchLocations(?int $limit, ?int $offset): array
     {
         $sql = <<<SQL
             SELECT 
@@ -16,10 +16,12 @@ class LocationRepository extends Repository
                 y,
                 width,
                 height
-            FROM location;
+            FROM location
         SQL;
+        $sql .= $this->generatePaginationString($limit, $offset);
+        $params = $this->generatePaginationParameters($limit, $offset);
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
         $locations = $stmt->fetchAll();
 
         $mapper = fn(array $location) => (new Location())
