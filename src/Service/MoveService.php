@@ -19,9 +19,9 @@ class MoveService
     }
 
     /** @return Move[] */
-    public function fetchMoves(): array
+    public function fetchMoves(?int $limit = null, ?int $offset = null): array
     {
-        return $this->moveRepository->getMoves();
+        return $this->moveRepository->getMoves($limit, $offset);
     }
 
     public function fetchMoveById(int $id): Move

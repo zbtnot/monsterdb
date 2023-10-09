@@ -58,7 +58,7 @@ class MoveRepository extends Repository
     }
 
     /** @return Move[] */
-    public function getMoves(): array
+    public function getMoves(?int $limit, ?int $offset): array
     {
         $sql = <<<SQL
             SELECT
@@ -71,8 +71,10 @@ class MoveRepository extends Repository
             FROM move
             INNER JOIN type ON move.type_id = type.id
         SQL;
+        $sql .= $this->generatePaginationString($limit, $offset);
+        $params = $this->generatePaginationParameters($limit, $offset);
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
 
         $moves = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return array_map(function (array $move) {

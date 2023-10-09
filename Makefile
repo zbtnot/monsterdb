@@ -40,6 +40,9 @@ logger:
 unit:
 	XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-coverage
 
+hurl:
+	hurl --variable host=http://localhost:8080 --test test/hurl/*.hurl
+
 clean:
 	rm db.sqlite
 	rm -rf vendor

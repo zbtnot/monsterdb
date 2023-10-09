@@ -16,10 +16,12 @@ class MoveController extends Controller
 
     public function fetchMovesAction(Request $request, Response $response): JsonResponse
     {
+        $limit = $request->getQueryParams()['count'] ?? null;
+        $offset = $request->getQueryParams()['offset'] ?? null;
         $status = StatusCodeInterface::STATUS_OK;
         $moves = [];
         try {
-            $moves = $this->moveService->fetchMoves();
+            $moves = $this->moveService->fetchMoves($limit, $offset);
         } catch (\Throwable $e) {
             $status = StatusCodeInterface::STATUS_BAD_REQUEST;
             $this->logger->error($e->getMessage());
