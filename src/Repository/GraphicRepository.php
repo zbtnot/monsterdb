@@ -6,7 +6,10 @@ use zbtnot\MonsterDb\Model\Animation;
 
 class GraphicRepository extends Repository
 {
-    /** @return array<int, string> */
+    /**
+     * @param int[] $monsterIds
+     * @return array<int, string>
+     */
     public function fetchIllustrationsByMonsterIds(array $monsterIds): array
     {
         $sql = <<<SQL
@@ -41,6 +44,10 @@ class GraphicRepository extends Repository
         return $statement->fetchColumn();
     }
 
+    /**
+     * @param int[] $monsterIds
+     * @return array<int, string>
+     */
     public function fetchSpritesByMonsterIds(array $monsterIds): array
     {
         $sql = <<<SQL

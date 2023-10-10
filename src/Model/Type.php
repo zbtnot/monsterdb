@@ -18,6 +18,7 @@ class Type implements \JsonSerializable
         return $this->name;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         return [

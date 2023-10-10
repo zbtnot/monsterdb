@@ -2,6 +2,8 @@
 
 namespace zbtnot\MonsterDb\Model;
 
+use zbtnot\MonsterDb\Model\Move;
+
 /**
  * Represents an object containing a monster and associated details data.
 
@@ -39,11 +41,13 @@ class DetailedMonster implements \JsonSerializable
         return array_map(fn(Type $type) => $type->getName(), $this->types);
     }
 
+    /** @return Type[] */
     public function getTypes(): array
     {
         return $this->types;
     }
 
+    /** @param Type[] $types */
     public function setTypes(array $types): self
     {
         $this->types = $types;
@@ -93,7 +97,7 @@ class DetailedMonster implements \JsonSerializable
         return $this->moves;
     }
 
-    /** @var Move[] $moves */
+    /** @param Move[] $moves */
     public function setMoves(array $moves): self
     {
         $this->moves = $moves;
@@ -101,13 +105,17 @@ class DetailedMonster implements \JsonSerializable
         return $this;
     }
 
+    /** @return array<int, EvolutionMonster[]> */
     public function getEvolutions(): array
     {
         return $this->evolutions;
     }
 
-    /** @var array<int, EvolutionMonster[]> $evolutions */
-    public function setEvolutions($evolutions): self
+    /**
+     * @param array<int, EvolutionMonster[]> $evolutions
+     * @return DetailedMonster
+     */
+    public function setEvolutions(array $evolutions): self
     {
         $this->evolutions = $evolutions;
 
@@ -128,6 +136,7 @@ class DetailedMonster implements \JsonSerializable
         return $this;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         $fields = [

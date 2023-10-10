@@ -10,7 +10,11 @@ use Slim\Psr7\Response;
 // Helper class for proper JSON responses.
 class JsonResponse extends Response
 {
-    public function __construct($body = '', Response $previousResponse = null)
+    /**
+     * @param \JsonSerializable|array<mixed>|string $body
+     * @param Response|null $previousResponse
+     */
+    public function __construct(\JsonSerializable|array|string $body = '', Response $previousResponse = null)
     {
         $streamFactory = new StreamFactory();
         $headers = new Headers(

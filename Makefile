@@ -43,6 +43,9 @@ unit:
 hurl:
 	hurl --variable host=http://localhost:8080 --test test/hurl/*.hurl
 
+stan:
+	vendor/bin/phpstan analyze -l 6 ./src
+
 clean:
 	rm db.sqlite
 	rm -rf vendor

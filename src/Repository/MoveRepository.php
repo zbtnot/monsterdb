@@ -118,7 +118,7 @@ class MoveRepository extends Repository
             ->setType($type);
     }
 
-
+    /** @return int[] */
     public function fetchMonsterIdsByMoveId(int $moveId): array
     {
         $sql = <<<SQL

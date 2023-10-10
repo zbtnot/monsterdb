@@ -6,7 +6,7 @@ use zbtnot\MonsterDb\Model\Type;
 
 class TypeRepository extends Repository
 {
-    /*** @return Type[] */
+    /** @return Type[] */
     public function fetchTypesByMonsterId(int $monsterId): array
     {
         $sql = <<<SQL

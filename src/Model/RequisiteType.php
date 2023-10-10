@@ -14,6 +14,7 @@ enum RequisiteType: string
             'Level Up' => self::LEVEL_UP,
             'Item' => self::ITEM,
             'Trade' => self::TRADE,
+            default => throw new \InvalidArgumentException("{$type} is not a valid type"),
         };
     }
 }
