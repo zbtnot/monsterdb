@@ -30,6 +30,12 @@ class MoveController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array<string,mixed> $args
+     * @return JsonResponse
+     */
     public function fetchMoveByIdAction(Request $request, Response $response, array $args): JsonResponse
     {
         $status = StatusCodeInterface::STATUS_OK;

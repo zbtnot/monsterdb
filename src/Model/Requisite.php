@@ -32,6 +32,7 @@ class Requisite implements \JsonSerializable
         return $this;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         return [

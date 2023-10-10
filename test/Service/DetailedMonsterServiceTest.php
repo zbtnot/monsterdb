@@ -80,7 +80,9 @@ class DetailedMonsterServiceTest extends TestCase
 
         $evolutionRequisite = (new Requisite())->setType(RequisiteType::LEVEL_UP)->setContents(0);
         $evolutionMonsters = array_map(function (GraphicMonster $graphicMonster) use ($evolutionRequisite) {
-            return (new EvolutionMonster())->setMonster($graphicMonster)->setRequisite($evolutionRequisite);
+            return (new EvolutionMonster())
+                ->setMonster($graphicMonster)
+                ->setRequisite($evolutionRequisite);
         }, $illustratedEvolutions);
 
         $detailedMonster = (new DetailedMonster($monster))

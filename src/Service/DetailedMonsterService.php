@@ -37,18 +37,11 @@ class DetailedMonsterService
         $moves = $this->moveRepository->getMovesByMonsterId($monster->getId());
         $locations = $this->locationRepository->findLocationsByMonsterId($monster->getId());
 
+        /** @var array<int, array<Monster|EvolutionMonster>> $evolutions */
         $evolutions = $this->monsterRepository->fetchMonstersFromEvolutionTreeByMonsterId($monster->getId());
         foreach ($evolutions as &$evolutionList) {
             $graphicMonsters = $this->illustrationService->fetchGraphicMonstersFromMonsters($evolutionList);
-            $evolutionList = array_map(function (GraphicMonster $graphicMonster) {
-                $how = $this->evolutionRepository->fetchRequisiteByEvolutionId(
-                    $graphicMonster->getMonster()->getEvolutionHowId()
-                );
-
-                return (new EvolutionMonster())
-                    ->setMonster($graphicMonster)
-                    ->setRequisite($how);
-            }, $graphicMonsters);
+            $evolutionList = array_map([$this, 'mapGraphicMonsterToEvolutionMonsters'], $graphicMonsters);
         }
 
         return (new DetailedMonster($monster))
@@ -59,5 +52,16 @@ class DetailedMonsterService
             ->setMoves($moves)
             ->setEvolutions($evolutions)
             ->setLocations($locations);
+    }
+
+    protected function mapGraphicMonsterToEvolutionMonsters(GraphicMonster $graphicMonster): EvolutionMonster
+    {
+        $how = $this->evolutionRepository->fetchRequisiteByEvolutionId(
+            $graphicMonster->getMonster()->getEvolutionHowId()
+        );
+
+        return (new EvolutionMonster())
+            ->setMonster($graphicMonster)
+            ->setRequisite($how);
     }
 }

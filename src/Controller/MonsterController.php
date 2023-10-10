@@ -13,14 +13,12 @@ use zbtnot\MonsterDb\Service\MonsterService;
 
 class MonsterController extends Controller
 {
-    #[Inject]
-    private MonsterService $monsterService;
-
-    #[Inject]
-    private GraphicService $illustrationService;
-
-    #[Inject]
-    private DetailedMonsterService $detailedMonsterService;
+    public function __construct(
+        private readonly MonsterService $monsterService,
+        private readonly GraphicService $illustrationService,
+        private readonly DetailedMonsterService $detailedMonsterService,
+    ) {
+    }
 
     public function indexAction(Request $request, Response $response): Response
     {
@@ -39,6 +37,12 @@ class MonsterController extends Controller
         return new JsonResponse($illustratedMonsters);
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array<string, mixed> $args
+     * @return JsonResponse
+     */
     public function fetchMonsterByDexId(Request $request, Response $response, array $args): JsonResponse
     {
         $status = StatusCodeInterface::STATUS_OK;
