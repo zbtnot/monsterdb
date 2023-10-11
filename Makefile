@@ -46,6 +46,9 @@ hurl:
 stan:
 	vendor/bin/phpstan analyze -l 6 ./src
 
+phpcs:
+	vendor/bin/phpcs --standard=PSR12 ./src
+
 clean:
 	rm db.sqlite
 	rm -rf vendor
