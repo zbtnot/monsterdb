@@ -10,7 +10,7 @@ enum RequisiteType: string
 
     public static function resolve(string $type): self
     {
-        return match($type) {
+        return match ($type) {
             'Level Up' => self::LEVEL_UP,
             'Item' => self::ITEM,
             'Trade' => self::TRADE,
