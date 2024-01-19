@@ -16,7 +16,8 @@ RUN apk add \
     php82-tokenizer \
     php82-xml \
     php82-simplexml \
-    php82-xmlwriter
+    php82-xmlwriter \
+    php82-ctype
 RUN just backend
 
 FROM php:8-fpm
