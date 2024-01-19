@@ -13,6 +13,7 @@ A web app designed to serve information about the popular video game, Pokemon.
 
 - Clone the repo
 - Run `make build`
+- Run `just docker`
 - Run `docker compose up`
 
 ## Assets
