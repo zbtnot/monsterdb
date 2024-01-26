@@ -1,5 +1,7 @@
 <template>
-    <template v-if="!loaded">Loading..</template>
+    <template v-if="!loaded">
+        <LoadingIndicator />
+    </template>
     <template v-else>
         <Banner v-if="error.length !== 0" :message="error" />
         <div v-else class="flex flex-wrap mt-4 px-5">
@@ -32,6 +34,7 @@ import EvolutionCard from '../monster/EvolutionCard.vue';
 import SpriteCard from '../monster/SpriteCard.vue';
 import CryCard from '../monster/CryCard.vue';
 import LocationCard from '../monster/LocationCard.vue';
+import LoadingIndicator from '../LoadingIndicator.vue';
 
 const route = useRoute();
 const loaded = ref(false);

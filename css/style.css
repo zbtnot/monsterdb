@@ -10,3 +10,59 @@ html, body, main {
     margin: 0;
     padding: 0;
 }
+
+.loadership_KOKGH {
+    display: flex;
+    position: relative;
+    width: 61px;
+    height: 13px;
+}
+.loadership_KOKGH div {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #ffffff;
+    top: 0px;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loadership_KOKGH div:nth-child(1) {
+    left: 0px;
+    animation: loadership_KOKGH_scale_up 0.6s infinite;
+}
+.loadership_KOKGH div:nth-child(2) {
+    left: 0px;
+    animation: loadership_KOKGH_translate 0.6s infinite;
+}
+.loadership_KOKGH div:nth-child(3) {
+    left: 24px;
+    animation: loadership_KOKGH_translate 0.6s infinite;
+}
+.loadership_KOKGH div:nth-child(4) {
+    left: 48px;
+    animation: loadership_KOKGH_scale_down 0.6s infinite;
+}
+@keyframes loadership_KOKGH_scale_up {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes loadership_KOKGH_scale_down {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes loadership_KOKGH_translate {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="h-full">
         <header>
             <nav
                 class="mx-auto border-b border-slate-900 bg-gray-700 font-serif font-bold"
