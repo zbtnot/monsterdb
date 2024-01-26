@@ -1,0 +1,13 @@
+services:
+    frontend:
+        image: monsterdb-frontend
+        ports:
+            - '127.0.0.1:8080:80'
+        links:
+            - backend
+        volumes:
+            - ./:/var/www/html
+    backend:
+        image: monsterdb-backend
+        volumes:
+            - ./:/var/www/html

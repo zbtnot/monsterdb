@@ -3,7 +3,9 @@
         <Banner :message="error" />
     </template>
     <template v-else>
-        <div v-if="!loaded">Loading..</div>
+        <div v-if="!loaded">
+            <LoadingIndicator />
+        </div>
         <div v-else class="flex flex-wrap mt-4 px-5">
             <MoveListCard class="w-full mb-5" :moves="moves" hide-requisite />
         </div>
@@ -15,6 +17,7 @@ import { onMounted, ref } from 'vue';
 import axiosClient from '../../axios';
 import MoveListCard from '../monster/MoveListCard.vue';
 import Banner from '../AppBanner.vue';
+import LoadingIndicator from '../LoadingIndicator.vue';
 
 const loaded = ref(false);
 const error = ref('');

@@ -12,9 +12,9 @@ A web app designed to serve information about the popular video game, Pokemon.
 ## Development
 
 - Clone the repo
-- Run `make build`
+- Run `just build`
 - Run `just docker`
-- Run `docker compose up`
+- Run `just docker-compose` for the dev env
 
 ## Assets
 The data provided in the `sql` and `public/assets` directories are sourced from [Bulbapedia](https://bulbapedia.bulbagarden.net).

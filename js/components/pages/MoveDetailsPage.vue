@@ -3,7 +3,9 @@
         <Banner :message="error" />
     </template>
     <template v-else>
-        <div v-if="!loaded">Loading..</div>
+        <div v-if="!loaded">
+            <LoadingIndicator />
+        </div>
         <div v-else class="flex flex-wrap mt-4 px-5">
             <div class="w-full md:w-1/3">
                 <StatsCard :move="move" class="mb-5" />
@@ -22,6 +24,7 @@ import axiosClient from '../../axios';
 import Banner from '../AppBanner.vue';
 import StatsCard from '../move/StatsCard.vue';
 import MonsterListCard from '../move/MonsterListCard.vue';
+import LoadingIndicator from '../LoadingIndicator.vue';
 
 const route = useRoute();
 const loaded = ref(false);

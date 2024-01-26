@@ -1,3 +1,5 @@
+build: db composer vite env
+
 db:
 	rm -f db.sqlite
 	touch db.sqlite
@@ -31,3 +33,36 @@ docker:
     docker build -t monsterdb-base . -f ./docker/base.dockerfile
     docker build -t monsterdb-frontend . -f ./docker/frontend.dockerfile
     docker build -t monsterdb-backend . -f ./docker/backend.dockerfile
+
+docker-compose:
+    docker compose -f ./docker-compose.dev.yml up
+
+vite:
+	npx vite build
+
+watch:
+	NODE_ENV=development npx vite build -w
+
+composer:
+	composer install
+
+logger:
+	tail -f -n 0 ./var/log/*.log
+
+unit:
+	XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-coverage
+
+hurl:
+	hurl --variable host=http://localhost:8080 --test test/hurl/*.hurl
+
+stan:
+	vendor/bin/phpstan analyze -l 6 ./src
+
+phpcs:
+	vendor/bin/phpcs --standard=PSR12 ./src
+
+clean:
+	rm db.sqlite
+	rm -rf vendor
+	rm -rf node_modules
+	rm -rf test-coverage

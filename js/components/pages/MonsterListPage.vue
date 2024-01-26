@@ -5,7 +5,7 @@
     <template v-else>
         <Search @search="(query) => (search = query)" />
         <div class="px-5 mt-4">
-            <template v-if="!loaded">Loading..</template>
+            <template v-if="!loaded"><LoadingIndicator /></template>
             <template
                 v-else-if="filteredMonsters.length === 0 && error.length === 0"
             >
@@ -34,6 +34,7 @@ import axiosClient from '../../axios';
 import Tile from '../AppTile.vue';
 import Search from '../AppSearch.vue';
 import Banner from '../AppBanner.vue';
+import LoadingIndicator from '../LoadingIndicator.vue';
 
 let loaded;
 const monsters = ref([]);
